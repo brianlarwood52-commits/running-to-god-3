@@ -82,7 +82,7 @@ const Navigation = () => {
   ]
 
   const resourceItems = [
-    { path: '/contact#emergency', label: 'Crisis Help' },
+    { path: '/crisis-help', label: 'Crisis Help' },
     { path: '/healing-pathways', label: 'Healing Pathways' },
     { path: '/daily-fire', label: 'Daily Fire' },
     { path: '/ministry-hub', label: 'Ministry Hub' },
