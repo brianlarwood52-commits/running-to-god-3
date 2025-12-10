@@ -4,7 +4,7 @@ import Navigation from '../src/components/Navigation'
 import Footer from '../src/components/Footer'
 import VideoBackground from '../src/components/VideoBackground'
 import PWAWrapper from '../src/components/PWAWrapper'
-import PWAWrapper from '../src/components/PWAWrapper'
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -120,7 +120,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <PWAWrapper />
         <VideoBackground />
         <div className="relative z-10">
           <Navigation />
