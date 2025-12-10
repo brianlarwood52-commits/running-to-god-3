@@ -3,7 +3,7 @@
 const CrisisHelp = () => {
   return (
     <div className="animate-fade-in">
-      <section id="emergency" className="py-16 bg-red-50 dark:bg-red-900/20 border-t-4 border-red-200 dark:border-red-700">
+      <section id="emergency" className="pt-24 pb-16 bg-red-50 dark:bg-red-900/20 border-t-4 border-red-200 dark:border-red-700">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-serif text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
             Crisis Support Resources
