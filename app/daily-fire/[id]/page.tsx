@@ -9,8 +9,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const devotional = getDevotionalById(parseInt(params.id));
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const devotional = getDevotionalById(parseInt(id));
 
   if (!devotional) {
     return {
@@ -29,8 +30,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default function DevotionalPage({ params }: { params: { id: string } }) {
-  const devotional = getDevotionalById(parseInt(params.id));
+export default async function DevotionalPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const devotional = getDevotionalById(parseInt(id));
 
   if (!devotional) {
     notFound();

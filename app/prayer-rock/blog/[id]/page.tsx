@@ -11,8 +11,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const post = getBlogPostById(params.id)
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const post = getBlogPostById(id)
 
   if (!post) {
     return {
@@ -34,8 +35,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-export default function BlogPostPage({ params }: { params: { id: string } }) {
-  const post = getBlogPostById(params.id)
+export default async function BlogPostPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const post = getBlogPostById(id)
 
   if (!post) {
     notFound()
