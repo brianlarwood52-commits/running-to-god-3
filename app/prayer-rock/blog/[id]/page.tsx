@@ -133,7 +133,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
             </div>
 
             <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-serif prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-orange-600 dark:prose-a:text-orange-400 prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-ol:text-gray-700 dark:prose-ol:text-gray-300">
-              <div dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br />') }} />
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
             </div>
 
             <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
