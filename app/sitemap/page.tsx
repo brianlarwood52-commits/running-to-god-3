@@ -47,6 +47,14 @@ export default function SitemapPage() {
       ]
     },
     {
+      title: 'Healing Pathway Programs',
+      pages: [
+        { name: 'Overcoming Shame', url: '/healing-pathways/overcoming-shame', description: 'Biblical journey from shame to identity in Christ (8 weeks)' },
+        { name: 'Grief and Loss', url: '/healing-pathways/grief-and-loss', description: 'Processing grief and finding hope in pain (10 weeks)' },
+        { name: 'Healing from Spiritual Abuse', url: '/healing-pathways/spiritual-abuse-recovery', description: 'Recovering from religious trauma (12 weeks)' },
+      ]
+    },
+    {
       title: 'Study Library',
       pages: [
         { name: 'Bible Study', url: '/bible-study', description: 'Interactive Bible reading and study tools' },

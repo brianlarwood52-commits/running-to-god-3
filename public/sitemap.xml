@@ -327,4 +327,24 @@
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
+
+  <!-- Healing Pathway Details -->
+  <url>
+    <loc>https://shametoflame.faith/healing-pathways/overcoming-shame</loc>
+    <lastmod>2024-12-12</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://shametoflame.faith/healing-pathways/grief-and-loss</loc>
+    <lastmod>2024-12-12</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://shametoflame.faith/healing-pathways/spiritual-abuse-recovery</loc>
+    <lastmod>2024-12-12</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
