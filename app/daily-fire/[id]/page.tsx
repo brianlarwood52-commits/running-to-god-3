@@ -45,8 +45,40 @@ export default async function DevotionalPage({ params }: { params: Promise<{ id:
     .filter(d => d.category === devotional.category && d.id !== devotional.id)
     .slice(0, 3);
 
+  const devotionalSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": devotional.title,
+    "description": devotional.message[0].substring(0, 160),
+    "author": {
+      "@type": "Organization",
+      "name": "Shame to Flame Ministry"
+    },
+    "datePublished": devotional.date,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Shame to Flame Ministry",
+      "url": "https://shametoflame.faith",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://shametoflame.faith/flame-icon.svg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://shametoflame.faith/daily-fire/${devotional.id}`
+    },
+    "articleSection": devotional.category,
+    "keywords": `daily devotional, ${devotional.category.toLowerCase()}, christian encouragement, biblical hope`
+  };
+
   return (
-    <div className="animate-fade-in">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(devotionalSchema) }}
+      />
+      <div className="animate-fade-in">
       <section className="py-12 bg-gradient-to-br from-flame-50 via-orange-50 to-yellow-50 dark:from-flame-900/30 dark:via-orange-900/30 dark:to-yellow-900/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
@@ -194,6 +226,7 @@ export default async function DevotionalPage({ params }: { params: Promise<{ id:
           </div>
         </section>
       )}
-    </div>
+      </div>
+    </>
   );
 }
