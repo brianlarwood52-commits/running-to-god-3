@@ -98,6 +98,14 @@
     <changefreq>monthly</changefreq>
   </url>
 
+  <!-- Admin -->
+  <url>
+    <loc>https://shametoflame.faith/admin</loc>
+    <lastmod>2024-12-12</lastmod>
+    <priority>0.3</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
   <!-- Legal & Other -->
   <url>
     <loc>https://shametoflame.faith/privacy-policy</loc>
