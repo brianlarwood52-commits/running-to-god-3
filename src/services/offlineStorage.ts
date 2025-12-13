@@ -192,6 +192,34 @@ class OfflineStorageService {
 
     return contentSize + submissionsSize;
   }
+
+  async deleteContentByPattern(type: string, excludeIds: string[] = []): Promise<number> {
+    if (!this.db) await this.init();
+
+    return new Promise((resolve, reject) => {
+      const transaction = this.db!.transaction([CONTENT_STORE], 'readwrite');
+      const store = transaction.objectStore(CONTENT_STORE);
+      const index = store.index('type');
+      const request = index.openCursor(type);
+      let deleteCount = 0;
+
+      request.onsuccess = (event) => {
+        const cursor = (event.target as IDBRequest).result;
+        if (cursor) {
+          const content = cursor.value as OfflineContent;
+          if (!excludeIds.includes(content.id)) {
+            cursor.delete();
+            deleteCount++;
+          }
+          cursor.continue();
+        } else {
+          resolve(deleteCount);
+        }
+      };
+
+      request.onerror = () => reject(request.error);
+    });
+  }
 }
 
 export const offlineStorage = new OfflineStorageService();

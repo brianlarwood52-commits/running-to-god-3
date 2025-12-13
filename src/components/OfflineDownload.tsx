@@ -26,6 +26,7 @@ export default function OfflineDownload({
   const [isDownloaded, setIsDownloaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [storageSize, setStorageSize] = useState<string>('');
+  const [isPartOfBulk, setIsPartOfBulk] = useState(false);
 
   useEffect(() => {
     checkDownloadStatus();
@@ -35,7 +36,24 @@ export default function OfflineDownload({
   const checkDownloadStatus = async () => {
     try {
       const content = await offlineStorage.getContent(contentId);
-      setIsDownloaded(!!content);
+      if (content) {
+        setIsDownloaded(true);
+        setIsPartOfBulk(false);
+        return;
+      }
+
+      const isBulkId = contentId.startsWith('all-');
+      if (!isBulkId) {
+        const bulkContent = await offlineStorage.getContent(`all-${contentType}s`);
+        if (bulkContent) {
+          setIsDownloaded(true);
+          setIsPartOfBulk(true);
+          return;
+        }
+      }
+
+      setIsDownloaded(false);
+      setIsPartOfBulk(false);
     } catch (error) {
       console.error('Error checking download status:', error);
     }
@@ -60,6 +78,15 @@ export default function OfflineDownload({
     setIsLoading(true);
     try {
       console.log('Starting download for:', contentId, contentTitle);
+
+      const isBulkDownload = contentId.startsWith('all-');
+      if (isBulkDownload) {
+        const deletedCount = await offlineStorage.deleteContentByPattern(contentType, [contentId]);
+        if (deletedCount > 0) {
+          console.log(`Removed ${deletedCount} individual ${contentType}(s) before bulk download`);
+        }
+      }
+
       await offlineStorage.saveContent({
         id: contentId,
         type: contentType,
@@ -70,6 +97,7 @@ export default function OfflineDownload({
 
       console.log('Download complete for:', contentId);
       setIsDownloaded(true);
+      setIsPartOfBulk(false);
       await updateStorageSize();
 
       const itemCount = Array.isArray(contentData) ? contentData.length : 1;
@@ -86,10 +114,16 @@ export default function OfflineDownload({
   };
 
   const handleDelete = async () => {
+    if (isPartOfBulk) {
+      showToast(`This is part of "All ${contentType}s" download. Delete that to remove this.`, 'info');
+      return;
+    }
+
     setIsLoading(true);
     try {
       await offlineStorage.deleteContent(contentId);
       setIsDownloaded(false);
+      setIsPartOfBulk(false);
       await updateStorageSize();
       showToast('Offline content removed', 'info');
 
@@ -109,13 +143,14 @@ export default function OfflineDownload({
           onClick={handleDelete}
           disabled={isLoading}
           className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
+          title={isPartOfBulk ? `Part of "All ${contentType}s" download` : 'Click to remove'}
         >
           {isLoading ? (
             <Loader2 className="w-4 h-4 animate-spin" />
           ) : (
             <>
               <Check className="w-4 h-4" />
-              <span>Downloaded</span>
+              <span>{isPartOfBulk ? 'Downloaded (All)' : 'Downloaded'}</span>
               <Trash2 className="w-4 h-4 ml-2 opacity-70" />
             </>
           )}
