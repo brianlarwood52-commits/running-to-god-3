@@ -128,7 +128,7 @@ export default function SettingsContent() {
     : offlineContent.filter(item => item.type === filterType);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-20 pb-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 bg-flame-500 rounded-full flex items-center justify-center">

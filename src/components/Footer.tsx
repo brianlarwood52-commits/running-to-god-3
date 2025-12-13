@@ -89,9 +89,9 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800/50 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col sm:flex-row items-center gap-6 text-sm text-gray-400">
-              <div className="flex items-center gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex flex-col items-center md:items-start gap-4 w-full md:w-auto">
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 text-sm text-gray-400">
                 <Link href="/privacy-policy" className="hover:text-white transition-colors duration-200">
                   Privacy Policy
                 </Link>
@@ -105,7 +105,7 @@ const Footer = () => {
               {!isInstalled && isInstallable && (
                 <button
                   onClick={handleInstall}
-                  className="flex items-center gap-2 bg-flame-600 hover:bg-flame-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  className="flex items-center gap-2 bg-flame-600 hover:bg-flame-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm font-medium w-full sm:w-auto justify-center"
                 >
                   <Smartphone className="h-4 w-4" />
                   Install App
