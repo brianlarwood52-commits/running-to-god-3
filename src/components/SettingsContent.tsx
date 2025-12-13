@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Settings, HardDrive, Trash2, Download, Calendar, BookOpen, Heart, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Settings, HardDrive, Trash2, Download, Calendar, BookOpen, Heart, AlertTriangle, CheckCircle, Smartphone } from 'lucide-react';
 import { offlineStorage, OfflineContent } from '@/services/offlineStorage';
 import { useToast } from '@/contexts/ToastContext';
+import { usePWAInstall } from '@/hooks/usePWAInstall';
 
 export default function SettingsContent() {
   const { showToast } = useToast();
+  const { isInstalled, isInstallable, installApp } = usePWAInstall();
   const [offlineContent, setOfflineContent] = useState<OfflineContent[]>([]);
   const [storageSize, setStorageSize] = useState<string>('0');
   const [isLoading, setIsLoading] = useState(true);
@@ -63,6 +65,16 @@ export default function SettingsContent() {
       showToast('Failed to clear all content', 'error');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleInstallApp = async () => {
+    const accepted = await installApp();
+    if (accepted) {
+      showToast('App installed successfully', 'success');
+      localStorage.removeItem('pwa-install-dismissed');
+    } else {
+      showToast('App installation cancelled', 'info');
     }
   };
 
@@ -131,6 +143,82 @@ export default function SettingsContent() {
             </p>
           </div>
         </div>
+
+        {!isInstalled && isInstallable && (
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden mb-8">
+            <div className="bg-gradient-to-r from-sky-500 to-blue-500 p-6">
+              <h2 className="font-serif text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <Smartphone className="h-6 w-6" />
+                Install as App
+              </h2>
+              <p className="text-white/90">
+                Access Shame to Flame from your home screen
+              </p>
+            </div>
+
+            <div className="p-6">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-800 dark:text-white text-lg mb-2">
+                    Get the Full App Experience
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    Install Shame to Flame on your device for quick access to healing resources,
+                    Daily Fire devotionals, and offline content. The app works just like a native
+                    app with a dedicated icon on your home screen.
+                  </p>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                      <span>Access from your home screen</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                      <span>Works offline with saved content</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                      <span>Fast, native-like experience</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                      <span>No app store required</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="flex-shrink-0">
+                  <button
+                    onClick={handleInstallApp}
+                    className="bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white font-medium py-4 px-8 rounded-xl transition-all duration-200 flex items-center gap-3 shadow-lg hover:shadow-xl"
+                  >
+                    <Smartphone className="h-5 w-5" />
+                    Install App
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isInstalled && (
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden mb-8">
+            <div className="p-6">
+              <div className="flex items-center gap-4 text-green-600 dark:text-green-400">
+                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                  <CheckCircle className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800 dark:text-white text-lg">
+                    App Installed
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    Shame to Flame is installed and ready to use
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden mb-8">
           <div className="bg-gradient-to-r from-flame-500 to-orange-500 p-6">

@@ -1,73 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone } from 'lucide-react';
-
-interface BeforeInstallPromptEvent extends Event {
-  prompt(): Promise<void>;
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
-}
+import { usePWAInstall } from '@/hooks/usePWAInstall';
 
 const PWAInstallPrompt: React.FC = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const { isInstalled, isInstallable, installApp } = usePWAInstall();
   const [showPrompt, setShowPrompt] = useState(false);
-  const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
-    // Check if app is already installed
-    const checkInstalled = () => {
-      if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
-        setIsInstalled(true);
-      }
-    };
-
-    checkInstalled();
-
-    // Listen for the beforeinstallprompt event
-    const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
-      
-      // Show prompt after a delay to not be intrusive
-      setTimeout(() => {
-        if (!isInstalled && !localStorage.getItem('pwa-install-dismissed')) {
-          setShowPrompt(true);
-        }
+    if (isInstallable && !isInstalled && !localStorage.getItem('pwa-install-dismissed')) {
+      const timer = setTimeout(() => {
+        setShowPrompt(true);
       }, 3000);
-    };
 
-    // Listen for app installed event
-    const handleAppInstalled = () => {
-      setIsInstalled(true);
-      setShowPrompt(false);
-      setDeferredPrompt(null);
-      console.log('PWA was installed');
-    };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    window.addEventListener('appinstalled', handleAppInstalled);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-      window.removeEventListener('appinstalled', handleAppInstalled);
-    };
-  }, [isInstalled]);
+      return () => clearTimeout(timer);
+    }
+  }, [isInstallable, isInstalled]);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) return;
+    const accepted = await installApp();
+    setShowPrompt(false);
 
-    try {
-      await deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      
-      if (outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      } else {
-        console.log('User dismissed the install prompt');
-      }
-      
-      setDeferredPrompt(null);
-      setShowPrompt(false);
-    } catch (error) {
-      console.error('Error during install prompt:', error);
+    if (accepted) {
+      console.log('User accepted the install prompt');
+    } else {
+      console.log('User dismissed the install prompt');
     }
   };
 
@@ -76,8 +32,7 @@ const PWAInstallPrompt: React.FC = () => {
     localStorage.setItem('pwa-install-dismissed', 'true');
   };
 
-  // Don't show if already installed or no prompt available
-  if (isInstalled || !showPrompt || !deferredPrompt) {
+  if (isInstalled || !showPrompt || !isInstallable) {
     return null;
   }
 
