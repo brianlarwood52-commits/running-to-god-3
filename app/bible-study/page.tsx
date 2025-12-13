@@ -1,15 +1,21 @@
-import BibleStudy from '../../src/old_pages_backup/BibleStudy'
+import { Metadata } from 'next';
+import PremiumBibleReader from '@/components/PremiumBibleReader';
 
-export const metadata = {
-  title: 'Bible Study Library - Free Scripture Study Tools | Shame to Flame',
-  description: 'Access comprehensive Bible study resources including topical studies, verse search, and biblical commentary to deepen your understanding of God\'s Word and healing promises.',
+export const metadata: Metadata = {
+  title: 'Premium Bible Study - Shame to Flame Ministry',
+  description: 'Experience an immersive, offline-first KJV Bible study with highlighting, notes, cross-references, and advanced reading features.',
+  keywords: 'KJV Bible study, Bible reading app, Bible notes, Bible highlights, offline Bible, premium Bible reader, Bible cross-references',
   openGraph: {
-    title: 'Bible Study Library - Free Scripture Study Tools',
-    description: 'Comprehensive Bible study resources, topical studies, and biblical commentary for spiritual growth and healing.',
+    title: 'Premium Bible Study - Advanced Scripture Reading Experience',
+    description: 'Immersive KJV Bible study with highlighting, notes, cross-references, and offline support. Built for deep study and spiritual growth.',
     type: 'website',
   },
-}
+};
 
-export default function Page() {
-  return <BibleStudy />
+export default function BibleStudyPage() {
+  return (
+    <div className="min-h-screen">
+      <PremiumBibleReader />
+    </div>
+  );
 }
