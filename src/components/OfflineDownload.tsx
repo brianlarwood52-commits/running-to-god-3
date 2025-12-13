@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Download, Check, Trash2, Loader2, HardDrive } from 'lucide-react';
 import { offlineStorage } from '@/services/offlineStorage';
+import { useToast } from '@/contexts/ToastContext';
 
 interface OfflineDownloadProps {
   contentId: string;
@@ -21,6 +22,7 @@ export default function OfflineDownload({
   onDownload,
   onDelete,
 }: OfflineDownloadProps) {
+  const { showToast } = useToast();
   const [isDownloaded, setIsDownloaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [storageSize, setStorageSize] = useState<string>('');
@@ -62,11 +64,12 @@ export default function OfflineDownload({
 
       setIsDownloaded(true);
       await updateStorageSize();
+      showToast('Content saved for offline viewing!', 'success');
 
       if (onDownload) onDownload();
     } catch (error) {
       console.error('Error downloading content:', error);
-      alert('Failed to download content for offline use');
+      showToast('Failed to download content for offline use', 'error');
     } finally {
       setIsLoading(false);
     }
@@ -78,11 +81,12 @@ export default function OfflineDownload({
       await offlineStorage.deleteContent(contentId);
       setIsDownloaded(false);
       await updateStorageSize();
+      showToast('Offline content removed', 'info');
 
       if (onDelete) onDelete();
     } catch (error) {
       console.error('Error deleting content:', error);
-      alert('Failed to remove offline content');
+      showToast('Failed to remove offline content', 'error');
     } finally {
       setIsLoading(false);
     }

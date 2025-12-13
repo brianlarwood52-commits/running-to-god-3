@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Flame, Menu, X, ChevronDown } from 'lucide-react'
+import { Flame, Menu, X, ChevronDown, Settings } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 
 const Navigation = () => {
@@ -272,6 +272,17 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/settings"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
+                pathname === '/settings'
+                  ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
+              }`}
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </Link>
             <ThemeToggle />
           </div>
 
@@ -427,6 +438,19 @@ const Navigation = () => {
                   {item.label}
                 </Link>
               ))}
+
+              <Link
+                href="/settings"
+                onClick={() => setIsOpen(false)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
+                  pathname === '/settings'
+                    ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
+                }`}
+              >
+                <Settings className="h-5 w-5" />
+                <span>Settings</span>
+              </Link>
             </div>
           </div>
         )}
