@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Flame, Heart, Mail, Download, Smartphone } from 'lucide-react'
+import { Flame, Heart, Mail } from 'lucide-react'
 import { usePWAInstall } from '@/hooks/usePWAInstall'
 
 const Footer = () => {
@@ -84,33 +84,38 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
+
+              {!isInstalled && isInstallable && (
+                <div>
+                  <h3 className="font-semibold text-base uppercase tracking-wider mb-4 text-flame-300">Install App</h3>
+                  <ul className="space-y-3">
+                    <li>
+                      <button
+                        onClick={handleInstall}
+                        className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left"
+                      >
+                        Access content offline and get a faster experience
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800/50 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex flex-col items-center md:items-start gap-4 w-full md:w-auto">
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 text-sm text-gray-400">
-                <Link href="/privacy-policy" className="hover:text-white transition-colors duration-200">
-                  Privacy Policy
-                </Link>
-                <Link href="/sitemap" className="hover:text-white transition-colors duration-200">
-                  Sitemap
-                </Link>
-                <Link href="/settings" className="hover:text-white transition-colors duration-200">
-                  Settings
-                </Link>
-              </div>
-              {!isInstalled && isInstallable && (
-                <button
-                  onClick={handleInstall}
-                  className="flex items-center gap-2 bg-flame-600 hover:bg-flame-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm font-medium w-full sm:w-auto justify-center"
-                >
-                  <Smartphone className="h-4 w-4" />
-                  Install App
-                </button>
-              )}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 text-sm text-gray-400">
+              <Link href="/privacy-policy" className="hover:text-white transition-colors duration-200">
+                Privacy Policy
+              </Link>
+              <Link href="/sitemap" className="hover:text-white transition-colors duration-200">
+                Sitemap
+              </Link>
+              <Link href="/settings" className="hover:text-white transition-colors duration-200">
+                Settings
+              </Link>
             </div>
             <div className="text-center md:text-right">
               <p className="text-gray-400 text-sm">
