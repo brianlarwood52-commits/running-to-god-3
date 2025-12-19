@@ -1,0 +1,14 @@
+{
+  "name": "Running to God - A Journey of Faith",
+  "short_name": "Running to God",
+  "description": "An Australian outback road trip exploring faith, purpose, and running to God.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-AU",
+  "categories": ["lifestyle", "religion", "education"],
+  "icons": []
+}

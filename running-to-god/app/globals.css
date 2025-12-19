@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles for Running to God PWA */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Mobile touch targets */
+  button, 
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent zoom on iOS form inputs */
+  input, 
+  textarea, 
+  select {
+    font-size: 16px;
+  }
+  
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
