@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
             <p className="text-dust-500 text-sm leading-relaxed font-serif">
               A documentary journey across the Australian outback. 
-              2,547 kilometres of dust, stars, and finding the way back to what matters.
+              6,859 kilometres of dust, stars, and finding the way back to what matters.
             </p>
           </div>
 

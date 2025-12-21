@@ -2,27 +2,45 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { MapPin, Fuel, Camera, Tent, Waves, ArrowRight } from 'lucide-react'
+import { MapPin, Fuel, Camera, Tent, Waves, ArrowRight, TreePine, Anchor } from 'lucide-react'
 
 const journeyStops = [
   {
     km: 0,
     location: 'Perth',
     region: 'Western Australia',
-    description: 'Packed the car at dawn. The Great Eastern Highway stretched out ahead—2,500 kilometres of unknown. Left behind the familiar. Drove towards... something.',
+    description: 'Packed the car at dawn. The road stretched out ahead—nearly 7,000 kilometres of unknown waiting. Left behind the familiar. Drove towards... something.',
     type: 'start',
     coordinates: '31.9°S 115.9°E',
   },
   {
-    km: 590,
+    km: 720,
+    location: 'Esperance',
+    region: 'South Coast, WA',
+    description: 'White sand beaches that look like they belong in the Caribbean. Lucky Bay, where kangaroos laze on the sand. A reminder that beauty often hides in unexpected places.',
+    type: 'landmark',
+    coordinates: '33.9°S 121.9°E',
+    quote: '"The earth is the Lord\'s, and everything in it."',
+    quoteRef: 'Psalm 24:1',
+  },
+  {
+    km: 890,
+    location: 'Israelite Bay',
+    region: 'The Edge of Nowhere',
+    description: 'The road turned to dirt. Then to sand. Then to almost nothing. An abandoned telegraph station. Complete isolation. The kind of place where you have no choice but to stop and listen.',
+    type: 'landmark',
+    coordinates: '33.6°S 123.9°E',
+  },
+  {
+    km: 1100,
     location: 'Norseman',
     region: 'Gateway to the Nullarbor',
-    description: 'Last real town before the crossing. Filled the tank, checked the tyres, bought enough water for a small army. The servo owner asked where I was headed. "East," I said. He just nodded. He\'d seen that look before.',
+    description: 'Last real town before the crossing. Filled the tank, checked the tyres, bought enough water for a small army. The servo owner asked where I was headed. "East," I said. He just nodded.',
     type: 'town',
     coordinates: '32.2°S 121.8°E',
   },
   {
-    km: 920,
+    km: 1500,
     location: 'Caiguna',
     region: 'Start of the 90 Mile Straight',
     description: '146.6 kilometres without a single turn. The longest straight road in Australia. Somewhere around kilometre 50, the road stopped feeling like a road and started feeling like a meditation.',
@@ -30,17 +48,17 @@ const journeyStops = [
     coordinates: '32.3°S 125.5°E',
   },
   {
-    km: 1200,
+    km: 1800,
     location: 'Nullarbor Roadhouse',
     region: 'The Heart of Nowhere',
-    description: 'Met a grey nomad couple who\'d been on the road for three years. "You\'re not running from something," the old man said, stirring his tea. "You\'re running to something. I can see it in your eyes."',
+    description: 'Met a grey nomad couple who\'d been on the road for three years. "You\'re not running from something," the old man said. "You\'re running to something. I can see it in your eyes."',
     type: 'town',
     coordinates: '31.4°S 130.9°E',
     quote: '"Be still and know that I am God."',
     quoteRef: 'Psalm 46:10',
   },
   {
-    km: 1450,
+    km: 2050,
     location: 'Bunda Cliffs',
     region: 'Great Australian Bight',
     description: 'Stood at the edge of the continent. 100-metre cliffs dropping straight into the Southern Ocean. Watched whales breach in the distance. Wept. Couldn\'t tell you why.',
@@ -50,7 +68,7 @@ const journeyStops = [
     quoteRef: 'Psalm 19:1',
   },
   {
-    km: 1650,
+    km: 2300,
     location: 'Border Village',
     region: 'SA/WA Border',
     description: 'Crossed into South Australia. Changed the clock forward 2.5 hours. Somehow felt like I\'d crossed more than just a timezone.',
@@ -58,14 +76,30 @@ const journeyStops = [
     coordinates: '31.0°S 129.0°E',
   },
   {
-    km: 2547,
-    location: 'Port Lincoln',
+    km: 2650,
+    location: 'Ceduna',
     region: 'South Australia',
-    description: 'Journey\'s end. Parked the car, walked to the water, sat down. Didn\'t move for an hour. Somewhere on that road, I\'d found what I was looking for. Or maybe it found me.',
-    type: 'end',
+    description: 'End of the Nullarbor. Civilisation returns. A real shower, a real bed. But somehow I missed the silence already.',
+    type: 'town',
+    coordinates: '32.1°S 133.7°E',
+  },
+  {
+    km: 3430,
+    location: 'Port Lincoln',
+    region: 'Eyre Peninsula, SA',
+    description: 'The turnaround point. Parked the car, walked to the water, sat down. Didn\'t move for an hour. Somewhere on that road, I\'d found what I was looking for.',
+    type: 'destination',
     coordinates: '34.7°S 135.9°E',
     quote: '"He who began a good work in you will carry it on to completion."',
     quoteRef: 'Philippians 1:6',
+  },
+  {
+    km: 6859,
+    location: 'Perth',
+    region: 'Home',
+    description: 'Back where I started. But not the same person who left. 6,859.5 kilometres later, the road had done its work. The journey was over. The transformation was just beginning.',
+    type: 'end',
+    coordinates: '31.9°S 115.9°E',
   },
 ]
 
@@ -86,12 +120,12 @@ export default function JourneyPage() {
         
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
-          <p className="location-tag mb-4">PERTH → PORT LINCOLN</p>
+          <p className="location-tag mb-4">PERTH → ESPERANCE → NULLARBOR → PORT LINCOLN → PERTH</p>
           <h1 className="font-cinematic text-6xl md:text-8xl text-dust-100 tracking-wider title-card mb-4">
             THE ROAD
           </h1>
           <p className="text-xl text-dust-300 font-serif max-w-2xl">
-            2,547 kilometres. 14 days. Every stop along the way taught me something 
+            6,859.5 kilometres. Round trip. Every stop along the way taught me something 
             I didn&apos;t know I needed to learn.
           </p>
         </div>
@@ -104,17 +138,20 @@ export default function JourneyPage() {
           {/* Route overview */}
           <div className="mb-20 text-center">
             <p className="font-mono text-xs text-earth-500 tracking-widest mb-8">THE ROUTE</p>
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <span className="font-cinematic text-2xl text-dust-300">PERTH</span>
+            <div className="flex items-center justify-center gap-2 md:gap-4 flex-wrap text-sm">
+              <span className="font-cinematic text-xl text-dust-300">PERTH</span>
               <span className="text-earth-600">→</span>
-              <span className="font-mono text-sm text-dust-500">NORSEMAN</span>
+              <span className="font-mono text-xs text-dust-500">ESPERANCE</span>
               <span className="text-earth-600">→</span>
-              <span className="font-mono text-sm text-dust-500">NULLARBOR</span>
+              <span className="font-mono text-xs text-dust-500">ISRAELITE BAY</span>
               <span className="text-earth-600">→</span>
-              <span className="font-mono text-sm text-dust-500">CEDUNA</span>
+              <span className="font-mono text-xs text-dust-500">NULLARBOR</span>
               <span className="text-earth-600">→</span>
-              <span className="font-cinematic text-2xl text-dust-300">PORT LINCOLN</span>
+              <span className="font-mono text-xs text-dust-500">PORT LINCOLN</span>
+              <span className="text-earth-600">→</span>
+              <span className="font-cinematic text-xl text-dust-300">PERTH</span>
             </div>
+            <p className="font-mono text-xs text-earth-600 mt-4">6,859.5 KM ROUND TRIP</p>
           </div>
 
           {/* Journey entries */}
@@ -132,12 +169,14 @@ export default function JourneyPage() {
                   <div className="flex-shrink-0 w-12">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center
                                   ${stop.type === 'start' ? 'bg-green-600' :
-                                    stop.type === 'end' ? 'bg-earth-500' :
+                                    stop.type === 'end' ? 'bg-green-600' :
+                                    stop.type === 'destination' ? 'bg-earth-500' :
                                     stop.type === 'landmark' ? 'bg-bight-600' :
                                     'bg-stone-700'} 
                                   border-2 border-stone-900`}>
                       {stop.type === 'start' && <MapPin className="h-5 w-5 text-white" />}
                       {stop.type === 'end' && <MapPin className="h-5 w-5 text-white" />}
+                      {stop.type === 'destination' && <Anchor className="h-5 w-5 text-white" />}
                       {stop.type === 'landmark' && <Camera className="h-5 w-5 text-white" />}
                       {stop.type === 'town' && <Fuel className="h-5 w-5 text-white" />}
                       {stop.type === 'border' && <MapPin className="h-5 w-5 text-white" />}

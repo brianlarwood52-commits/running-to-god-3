@@ -2,8 +2,8 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
   "/campfire/page": "app/campfire/page.js",
+  "/contact/page": "app/contact/page.js",
   "/devotions/page": "app/devotions/page.js",
   "/journey/page": "app/journey/page.js",
-  "/contact/page": "app/contact/page.js",
   "/page": "app/page.js"
 }

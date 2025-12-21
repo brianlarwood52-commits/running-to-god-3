@@ -44,7 +44,7 @@ export default function Navigation() {
                 RUNNING TO GOD
               </p>
               <p className="font-mono text-[10px] text-dust-600 tracking-widest">
-                PERTH → PORT LINCOLN
+                6,859 KM ROUND TRIP
               </p>
             </div>
           </Link>

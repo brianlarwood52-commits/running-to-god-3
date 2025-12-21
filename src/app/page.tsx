@@ -53,7 +53,7 @@ export default function HomePage() {
         <div className="relative z-20 text-center px-4 max-w-5xl">
           {/* Location tag */}
           <p className="location-tag mb-6 animate-fade-in">
-            Somewhere between Perth and Port Lincoln
+            Perth → Esperance → Nullarbor → Port Lincoln & Back
           </p>
           
           {/* Main Title */}
@@ -63,7 +63,7 @@ export default function HomePage() {
           
           {/* Subtitle - journal style */}
           <p className="font-journal text-3xl sm:text-4xl md:text-5xl text-dust-300 mb-8">
-            2,547 kilometres of dust, stars, and finding my way back
+            6,859 kilometres of dust, stars, and finding my way back
           </p>
 
           {/* Play button style CTA */}
@@ -87,14 +87,14 @@ export default function HomePage() {
 
         {/* Credits-style location */}
         <div className="absolute bottom-8 left-8 z-20 font-mono text-xs text-dust-600">
-          <p>35.8°S 137.8°E</p>
-          <p>THE NULLARBOR PLAIN</p>
+          <p>33.9°S 121.9°E</p>
+          <p>ISRAELITE BAY</p>
         </div>
 
         {/* Credits-style info */}
         <div className="absolute bottom-8 right-8 z-20 font-mono text-xs text-dust-600 text-right">
-          <p>PERTH → PORT LINCOLN</p>
-          <p>2,547 KM</p>
+          <p>PERTH → ESPERANCE → NULLARBOR → PORT LINCOLN</p>
+          <p>6,859.5 KM ROUND TRIP</p>
         </div>
       </section>
 
@@ -143,7 +143,7 @@ export default function HomePage() {
                     THE ROAD
                   </h3>
                   <p className="text-sm text-dust-400 mt-2">
-                    2,547 km from Perth to Port Lincoln
+                    6,859 km round trip across the outback
                   </p>
                 </div>
               </div>
