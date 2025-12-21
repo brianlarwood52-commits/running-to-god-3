@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Mail, Send, MapPin, Heart, CheckCircle } from 'lucide-react'
+import { Mail, Send, CheckCircle, MapPin } from 'lucide-react'
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
@@ -13,123 +13,114 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real app, this would send to a backend
     setSubmitted(true)
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-b from-sky-100 to-white dark:from-abyss-900 dark:to-abyss-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Mail className="h-16 w-16 text-sky-600 dark:text-sky-400 mx-auto mb-6" />
-          <h1 className="font-display text-5xl font-bold text-abyss-900 dark:text-white mb-4">
-            Get in Touch
+    <div className="min-h-screen bg-stone-950">
+      
+      {/* ===== HERO ===== */}
+      <section className="relative py-32 vignette">
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900 to-stone-950" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <p className="location-tag mb-4">GET IN TOUCH</p>
+          <h1 className="font-cinematic text-6xl md:text-7xl text-dust-100 tracking-wider mb-4">
+            CONTACT
           </h1>
-          <p className="text-xl text-abyss-600 dark:text-abyss-300">
-            We&apos;d love to hear from you.
+          <p className="text-xl text-dust-400 font-serif max-w-xl mx-auto">
+            Whether you want to share your own road story, ask a question, 
+            or just say g&apos;day—we&apos;d love to hear from you.
           </p>
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-16 bg-white dark:bg-abyss-950">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ===== CONTACT FORM ===== */}
+      <section className="py-16 bg-stone-950">
+        <div className="max-w-2xl mx-auto px-6">
+          
           {submitted ? (
-            <div className="card text-center py-12">
-              <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-              <h2 className="font-display text-2xl font-bold text-abyss-900 dark:text-white mb-2">
-                Message Sent!
+            <div className="text-center py-16">
+              <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-6" />
+              <h2 className="font-cinematic text-3xl text-dust-100 tracking-wider mb-4">
+                MESSAGE SENT
               </h2>
-              <p className="text-abyss-600 dark:text-abyss-400">
-                Thank you for reaching out. We&apos;ll get back to you as soon as we can.
+              <p className="text-dust-400 font-serif">
+                Thanks for reaching out. We&apos;ll get back to you soon.
               </p>
             </div>
           ) : (
-            <div className="card">
-              <h2 className="font-display text-2xl font-bold text-abyss-900 dark:text-white mb-6">
-                Send a Message
-              </h2>
+            <form onSubmit={handleSubmit} className="space-y-8">
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-abyss-700 dark:text-abyss-300 mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-sky-200 dark:border-abyss-700 
-                             bg-white dark:bg-abyss-800 text-abyss-900 dark:text-white
-                             focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
-                    placeholder="John Smith"
-                  />
-                </div>
+              <div>
+                <label className="block font-mono text-xs text-dust-500 tracking-widest mb-2">
+                  YOUR NAME
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-4 bg-stone-900 border border-stone-700 rounded
+                           text-dust-200 font-serif
+                           focus:ring-2 focus:ring-earth-500 focus:border-transparent 
+                           transition-all outline-none"
+                  placeholder="John Smith"
+                />
+              </div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-abyss-700 dark:text-abyss-300 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-sky-200 dark:border-abyss-700 
-                             bg-white dark:bg-abyss-800 text-abyss-900 dark:text-white
-                             focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all"
-                    placeholder="john@example.com"
-                  />
-                </div>
+              <div>
+                <label className="block font-mono text-xs text-dust-500 tracking-widest mb-2">
+                  EMAIL ADDRESS
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-4 bg-stone-900 border border-stone-700 rounded
+                           text-dust-200 font-serif
+                           focus:ring-2 focus:ring-earth-500 focus:border-transparent 
+                           transition-all outline-none"
+                  placeholder="john@example.com"
+                />
+              </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-abyss-700 dark:text-abyss-300 mb-2">
-                    Your Message
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={6}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-sky-200 dark:border-abyss-700 
-                             bg-white dark:bg-abyss-800 text-abyss-900 dark:text-white
-                             focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all resize-none"
-                    placeholder="Share your thoughts, prayer requests, or just say hello..."
-                  />
-                </div>
+              <div>
+                <label className="block font-mono text-xs text-dust-500 tracking-widest mb-2">
+                  YOUR MESSAGE
+                </label>
+                <textarea
+                  required
+                  rows={6}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-4 bg-stone-900 border border-stone-700 rounded
+                           text-dust-200 font-serif resize-none
+                           focus:ring-2 focus:ring-earth-500 focus:border-transparent 
+                           transition-all outline-none"
+                  placeholder="Share your story, ask a question, or just say hello..."
+                />
+              </div>
 
-                <button
-                  type="submit"
-                  className="w-full btn-primary flex items-center justify-center gap-2"
-                >
-                  <Send className="h-5 w-5" />
-                  Send Message
-                </button>
-              </form>
-            </div>
+              <button type="submit" className="btn-expedition w-full flex items-center justify-center gap-3">
+                <Send className="h-5 w-5" />
+                SEND MESSAGE
+              </button>
+            </form>
           )}
 
-          {/* Additional Info */}
-          <div className="mt-12 grid sm:grid-cols-2 gap-6">
-            <div className="card text-center">
-              <MapPin className="h-8 w-8 text-sky-600 dark:text-sky-400 mx-auto mb-3" />
-              <h3 className="font-semibold text-abyss-900 dark:text-white">Based In</h3>
-              <p className="text-sm text-abyss-600 dark:text-abyss-400 mt-1">
-                Port Lincoln, South Australia
-              </p>
+          {/* Additional info */}
+          <div className="mt-16 grid sm:grid-cols-2 gap-8">
+            <div className="text-center p-6 bg-stone-900/50 border border-stone-800 rounded">
+              <MapPin className="h-8 w-8 text-earth-500 mx-auto mb-3" />
+              <p className="font-mono text-xs text-dust-500 tracking-widest mb-1">BASED IN</p>
+              <p className="font-serif text-dust-300">Port Lincoln, South Australia</p>
             </div>
-
-            <div className="card text-center">
-              <Heart className="h-8 w-8 text-sky-600 dark:text-sky-400 mx-auto mb-3" />
-              <h3 className="font-semibold text-abyss-900 dark:text-white">Prayer Requests</h3>
-              <p className="text-sm text-abyss-600 dark:text-abyss-400 mt-1">
-                We&apos;d be honoured to pray for you
-              </p>
+            <div className="text-center p-6 bg-stone-900/50 border border-stone-800 rounded">
+              <Mail className="h-8 w-8 text-earth-500 mx-auto mb-3" />
+              <p className="font-mono text-xs text-dust-500 tracking-widest mb-1">PRAYER REQUESTS</p>
+              <p className="font-serif text-dust-300">We&apos;d be honoured to pray for you</p>
             </div>
           </div>
         </div>

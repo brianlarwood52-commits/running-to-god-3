@@ -2,152 +2,109 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Heart, Compass, MapPin, ArrowRight, Quote } from 'lucide-react'
+import { Quote, MapPin, ArrowRight } from 'lucide-react'
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-stone-100 dark:bg-stone-950">
-      {/* Hero */}
-      <section className="relative py-32 bg-gradient-to-b from-earth-700 via-earth-800 to-stone-900 overflow-hidden">
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <p className="font-mono text-xs text-dust-400 tracking-widest mb-4">
-            THE STORY BEHIND THE JOURNEY
-          </p>
-          <h1 className="font-display text-6xl md:text-8xl text-white mb-6 tracking-wider">
-            WHY THE ROAD?
+    <div className="min-h-screen bg-stone-950">
+      
+      {/* ===== HERO ===== */}
+      <section className="relative h-[60vh] flex items-end vignette film-grain">
+        <div className="absolute inset-0 bg-gradient-to-b from-earth-700 via-earth-800 to-stone-950" />
+        
+        <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
+          <p className="location-tag mb-4">THE STORY BEHIND THE JOURNEY</p>
+          <h1 className="font-cinematic text-6xl md:text-8xl text-dust-100 tracking-wider title-card mb-4">
+            WHY THE ROAD
           </h1>
-          <p className="text-xl text-dust-300 max-w-2xl mx-auto font-light">
-            Sometimes you have to leave everything behind to find what matters most.
+          <p className="text-xl text-dust-300 font-serif max-w-2xl">
+            Before there was a journey, there was a question. 
+            Before there was a destination, there was a need to escape.
           </p>
         </div>
       </section>
 
-      {/* Story */}
-      <section className="py-16 bg-stone-100 dark:bg-stone-950">
-        <div className="max-w-3xl mx-auto px-4">
-          <div className="adventure-card p-8 md:p-12">
-            <Quote className="h-12 w-12 text-earth-300 dark:text-earth-700 mb-6" />
-            
-            <div className="space-y-6 text-stone-600 dark:text-stone-400 text-lg leading-relaxed">
-              <p className="first-letter:text-5xl first-letter:font-display first-letter:text-earth-600 first-letter:mr-2 first-letter:float-left">
-                There comes a moment in every life when the familiar becomes suffocating. 
-                When the daily routine feels less like stability and more like a prison. 
-                For me, that moment came in Perth, staring at the same four walls, 
-                wondering if there was more to life than this.
+      {/* ===== THE STORY ===== */}
+      <section className="py-20 bg-stone-950">
+        <div className="max-w-3xl mx-auto px-6">
+          
+          {/* Opening quote */}
+          <div className="mb-16 text-center">
+            <Quote className="h-12 w-12 text-earth-600/50 mx-auto mb-6" />
+            <blockquote className="text-2xl md:text-3xl font-serif italic text-dust-300 leading-relaxed">
+              &ldquo;I didn&apos;t know what I was looking for. I just knew I wouldn&apos;t find it where I was.&rdquo;
+            </blockquote>
+          </div>
+          
+          {/* Story content */}
+          <div className="prose prose-invert prose-lg max-w-none">
+            <div className="space-y-8 text-dust-300 font-serif text-lg leading-relaxed">
+              
+              <p className="first-letter:text-6xl first-letter:font-cinematic first-letter:text-earth-500 first-letter:mr-3 first-letter:float-left first-letter:leading-none">
+                There comes a moment when the walls of your life start closing in. 
+                When the routine that once felt like stability begins to feel like a prison. 
+                When you wake up one morning and realise you don&apos;t recognise the person in the mirror anymore.
               </p>
 
               <p>
-                I didn&apos;t have a plan. I had a car, a tent, and a desperate need to find 
-                something—or Someone—bigger than my circumstances. So I pointed the car 
-                east and started driving.
+                For me, that moment came in Perth. Good job. Nice apartment. 
+                Everything I was supposed to want. And a growing emptiness that no amount of 
+                success or distraction could fill.
               </p>
 
               <p>
-                The Nullarbor has a way of stripping everything away. There&apos;s no 
-                distraction out there. No phone signal. No Netflix. Just you, the road, 
-                and 1,200 kilometres of nothing. In that nothing, I found everything.
+                So I did what any sensible person would do: I bought a map, packed my car, 
+                and pointed it east towards the Nullarbor. 2,500 kilometres of nothing 
+                seemed like exactly what I needed.
               </p>
 
-              <p className="font-hand text-2xl text-earth-600 dark:text-earth-400 italic">
-                God meets us in the wilderness. He always has.
+              <div className="border-l-2 border-earth-600 pl-6 my-12 italic text-dust-400">
+                <p>
+                  I told people I was going on a road trip. What I didn&apos;t tell them 
+                  was that I was running. Running from questions I didn&apos;t want to answer. 
+                  Running from a faith I&apos;d let grow cold. Running from myself.
+                </p>
+              </div>
+
+              <p>
+                What I found on that road—in the endless horizons, the roadhouse conversations, 
+                the nights under more stars than I knew existed—was exactly what I&apos;d been 
+                running from. And it was exactly what I needed.
               </p>
 
               <p>
-                Standing at the Bunda Cliffs, watching the Southern Ocean crash against 
-                ancient limestone, I understood something for the first time: I am small, 
-                but I am loved by Someone infinite. The same God who carved those cliffs 
-                knows my name.
+                God doesn&apos;t always speak in churches. Sometimes He speaks in the silence 
+                of the Nullarbor. Sometimes He speaks through a stranger at a roadhouse. 
+                Sometimes He speaks in the beauty of cliffs dropping into an endless ocean.
               </p>
 
               <p>
-                This ministry exists because of that road trip. Every kilometre taught me 
-                something. Every roadhouse conversation revealed a truth. Every starlit 
-                night was a reminder that we are never truly alone.
+                This ministry exists because of that road. Every kilometre taught me something. 
+                Every story needs to be told. And maybe—just maybe—you&apos;re on your own 
+                road right now, looking for the same thing I was.
               </p>
 
-              <p>
-                <strong className="text-stone-800 dark:text-stone-200">Running to God</strong> isn&apos;t 
-                about running away from your problems. It&apos;s about running towards the 
-                One who can handle them. Whether you&apos;re on a literal road trip or 
-                navigating the highways and byways of everyday life, God is there—in 
-                the dust, in the stars, in the silence.
-              </p>
-            </div>
-
-            <div className="mt-8 pt-8 border-t border-stone-200 dark:border-stone-800">
-              <p className="font-hand text-xl text-stone-500 dark:text-stone-500 text-right">
-                — From Perth to Port Lincoln, and beyond
+              <p className="font-journal text-3xl text-earth-400 text-center my-12">
+                You&apos;re not alone on this journey.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission */}
-      <section className="py-16 bg-earth-100 dark:bg-stone-900">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-4xl md:text-5xl text-earth-800 dark:text-earth-500 tracking-wide mb-4">
-              OUR MISSION
-            </h2>
-            <p className="text-stone-600 dark:text-stone-400 max-w-2xl mx-auto">
-              To encourage fellow travellers on their faith journey through stories, 
-              devotions, and shared experiences from the road.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="adventure-card p-6 text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-earth-600 rounded-lg flex items-center justify-center">
-                <MapPin className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="font-display text-xl text-earth-700 dark:text-earth-500 tracking-wide mb-2">
-                SHARE THE JOURNEY
-              </h3>
-              <p className="text-stone-600 dark:text-stone-400 text-sm">
-                Stories from the road that point to something greater
-              </p>
-            </div>
-
-            <div className="adventure-card p-6 text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-campfire-600 rounded-lg flex items-center justify-center">
-                <Heart className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="font-display text-xl text-earth-700 dark:text-earth-500 tracking-wide mb-2">
-                FUEL THE SPIRIT
-              </h3>
-              <p className="text-stone-600 dark:text-stone-400 text-sm">
-                Daily encouragement for life&apos;s highway
-              </p>
-            </div>
-
-            <div className="adventure-card p-6 text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-bight-600 rounded-lg flex items-center justify-center">
-                <Compass className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="font-display text-xl text-earth-700 dark:text-earth-500 tracking-wide mb-2">
-                POINT THE WAY
-              </h3>
-              <p className="text-stone-600 dark:text-stone-400 text-sm">
-                Always directing travellers towards the ultimate destination
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-earth-800 dark:bg-stone-950">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-display text-4xl text-dust-100 mb-4 tracking-wide">
-            START YOUR JOURNEY
+      {/* ===== CTA ===== */}
+      <section className="py-20 bg-gradient-to-b from-stone-950 to-stone-900">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-cinematic text-4xl md:text-5xl text-dust-100 tracking-wider mb-6">
+            YOUR ROAD AWAITS
           </h2>
-          <p className="text-dust-400 mb-8 max-w-xl mx-auto">
-            Every great journey begins with a single step. Where will yours take you?
+          <p className="text-dust-400 font-serif text-lg mb-8 max-w-xl mx-auto">
+            Whatever crossroads you&apos;re standing at, whatever questions you&apos;re asking—
+            the journey starts with a single step.
           </p>
-          <Link href="/journey" className="btn-adventure inline-flex items-center gap-2">
-            <Compass className="h-5 w-5" />
-            HIT THE ROAD
+          <Link href="/journey" className="btn-expedition inline-flex items-center gap-3">
+            <MapPin className="h-5 w-5" />
+            BEGIN THE JOURNEY
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
