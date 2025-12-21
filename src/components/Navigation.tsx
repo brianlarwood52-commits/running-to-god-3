@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from '@/context/ThemeContext'
-import { Sun, Moon, Menu, X, MapPin } from 'lucide-react'
+import Logo from './Logo'
+import { Sun, Moon, Menu, X } from 'lucide-react'
 
 const navLinks = [
   { href: '/', label: 'HOME' },
@@ -30,15 +31,13 @@ export default function Navigation() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700
                     ${scrolled 
-                      ? 'bg-stone-950/95 backdrop-blur-sm py-3' 
-                      : 'nav-documentary py-6'}`}>
+                      ? 'bg-stone-950/95 backdrop-blur-sm py-2' 
+                      : 'nav-documentary py-4'}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
-            <div className="w-8 h-8 border border-earth-500 rounded-sm flex items-center justify-center group-hover:bg-earth-500/20 transition-all">
-              <MapPin className="h-4 w-4 text-earth-500" />
-            </div>
+            <Logo size="sm" />
             <div className="hidden sm:block">
               <p className="font-cinematic text-lg text-dust-100 tracking-widest leading-none">
                 RUNNING TO GOD
@@ -96,12 +95,15 @@ export default function Navigation() {
         style={{ top: '60px' }}
       >
         <div className="flex flex-col items-center justify-center h-full gap-8">
+          {/* Logo in mobile menu */}
+          <Logo size="lg" showText />
+          
           {navLinks.map((link, index) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="font-cinematic text-4xl text-dust-300 hover:text-earth-400 tracking-widest transition-colors"
+              className="font-cinematic text-3xl text-dust-300 hover:text-cyan-400 tracking-widest transition-colors"
               style={{ 
                 animationDelay: `${index * 0.1}s`,
                 animation: isOpen ? 'fadeInUp 0.5s ease-out forwards' : 'none'

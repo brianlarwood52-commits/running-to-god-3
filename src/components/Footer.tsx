@@ -2,7 +2,8 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { MapPin, Heart } from 'lucide-react'
+import Logo from './Logo'
+import { Heart } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -15,13 +16,14 @@ export default function Footer() {
           
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 border border-earth-500 rounded-sm flex items-center justify-center">
-                <MapPin className="h-5 w-5 text-earth-500" />
-              </div>
+            <div className="flex items-center gap-4 mb-6">
+              <Logo size="md" />
               <div>
                 <p className="font-cinematic text-xl text-dust-100 tracking-widest">
                   RUNNING TO GOD
+                </p>
+                <p className="font-mono text-[10px] text-dust-600 tracking-widest">
+                  6,859.5 KM ROUND TRIP
                 </p>
               </div>
             </div>
@@ -33,7 +35,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <p className="font-mono text-xs text-earth-500 tracking-widest mb-6">NAVIGATE</p>
+            <p className="font-mono text-xs text-cyan-500 tracking-widest mb-6">NAVIGATE</p>
             <div className="grid grid-cols-2 gap-3">
               <Link href="/journey" className="font-mono text-xs text-dust-500 hover:text-dust-200 tracking-wider transition-colors">
                 THE ROAD
@@ -55,8 +57,8 @@ export default function Footer() {
 
           {/* Scripture */}
           <div>
-            <p className="font-mono text-xs text-earth-500 tracking-widest mb-6">ROAD VERSE</p>
-            <blockquote className="text-dust-400 text-sm italic font-serif border-l-2 border-earth-700 pl-4">
+            <p className="font-mono text-xs text-cyan-500 tracking-widest mb-6">ROAD VERSE</p>
+            <blockquote className="text-dust-400 text-sm italic font-serif border-l-2 border-cyan-700 pl-4">
               &ldquo;Your word is a lamp for my feet, a light on my path.&rdquo;
               <footer className="mt-3 not-italic font-mono text-xs text-dust-600 tracking-wider">
                 — PSALM 119:105
@@ -74,7 +76,7 @@ export default function Footer() {
               © {currentYear} RUNNING TO GOD MINISTRY
             </p>
             <div className="flex items-center gap-1 font-mono text-xs text-dust-700 tracking-wider">
-              MADE WITH <Heart className="h-3 w-3 text-campfire-500 mx-1 fill-current" /> 
+              MADE WITH <Heart className="h-3 w-3 text-cyan-500 mx-1 fill-current" /> 
               ON THE ROAD
             </div>
           </div>

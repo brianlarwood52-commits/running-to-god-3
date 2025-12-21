@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Logo from '@/components/Logo'
 import { Play, ChevronDown, MapPin, BookOpen, Flame, ArrowRight } from 'lucide-react'
 
 export default function HomePage() {
@@ -51,13 +52,18 @@ export default function HomePage() {
 
         {/* Content */}
         <div className="relative z-20 text-center px-4 max-w-5xl">
+          {/* Logo */}
+          <div className="mb-8 animate-fade-in">
+            <Logo size="xl" />
+          </div>
+
           {/* Location tag */}
-          <p className="location-tag mb-6 animate-fade-in">
+          <p className="location-tag mb-4 animate-fade-in">
             Swan View → Nullarbor → Port Lincoln → Esperance → Home
           </p>
           
           {/* Main Title */}
-          <h1 className="font-cinematic text-6xl sm:text-8xl md:text-9xl text-dust-100 title-card mb-6 tracking-wider leading-none">
+          <h1 className="font-cinematic text-5xl sm:text-7xl md:text-8xl text-dust-100 title-card mb-6 tracking-wider leading-none">
             RUNNING TO GOD
           </h1>
           
