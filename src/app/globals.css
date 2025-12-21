@@ -215,6 +215,62 @@
   animation: twinkle 3s ease-in-out infinite;
 }
 
+/* ===== PARALLAX STARS ===== */
+@keyframes starTwinkle {
+  0%, 100% { opacity: var(--star-opacity, 0.3); }
+  50% { opacity: 1; }
+}
+
+.parallax-star {
+  animation: starTwinkle 4s ease-in-out infinite;
+}
+
+/* Shooting star */
+@keyframes shootingStar {
+  0%, 85%, 100% { 
+    opacity: 0; 
+    transform: rotate(-45deg) translateX(0);
+  }
+  87% { 
+    opacity: 0.8; 
+  }
+  92% { 
+    opacity: 0.8;
+    transform: rotate(-45deg) translateX(-300px);
+  }
+  93% {
+    opacity: 0;
+    transform: rotate(-45deg) translateX(-350px);
+  }
+}
+
+.shooting-star-anim {
+  animation: shootingStar 12s ease-in-out infinite;
+}
+
+@keyframes shootingStar2 {
+  0%, 45%, 100% { 
+    opacity: 0; 
+    transform: rotate(-35deg) translateX(0);
+  }
+  47% { 
+    opacity: 0.6; 
+  }
+  52% { 
+    opacity: 0.6;
+    transform: rotate(-35deg) translateX(-250px);
+  }
+  53% {
+    opacity: 0;
+    transform: rotate(-35deg) translateX(-300px);
+  }
+}
+
+.shooting-star-anim-2 {
+  animation: shootingStar2 18s ease-in-out infinite;
+  animation-delay: 5s;
+}
+
 /* ===== LOCATION TAG ===== */
 .location-tag {
   @apply font-mono text-xs tracking-widest uppercase;

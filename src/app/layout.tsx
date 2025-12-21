@@ -3,6 +3,7 @@ import { ThemeProvider } from '@/context/ThemeContext'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister'
+import ParallaxStars from '@/components/ParallaxStars'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -47,6 +48,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col antialiased bg-stone-950 text-stone-200">
         <ThemeProvider>
+          <ParallaxStars />
           <Navigation />
           <main className="flex-1 relative z-10 pt-16">
             {children}
