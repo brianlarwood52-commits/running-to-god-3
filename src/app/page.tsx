@@ -53,7 +53,7 @@ export default function HomePage() {
         <div className="relative z-20 text-center px-4 max-w-5xl">
           {/* Location tag */}
           <p className="location-tag mb-6 animate-fade-in">
-            Perth → Esperance → Nullarbor → Port Lincoln & Back
+            Perth → Nullarbor → Port Lincoln → Esperance → Home
           </p>
           
           {/* Main Title */}
@@ -93,7 +93,7 @@ export default function HomePage() {
 
         {/* Credits-style info */}
         <div className="absolute bottom-8 right-8 z-20 font-mono text-xs text-dust-600 text-right">
-          <p>PERTH → ESPERANCE → NULLARBOR → PORT LINCOLN</p>
+          <p>OUT VIA NULLARBOR • BACK VIA ESPERANCE</p>
           <p>6,859.5 KM ROUND TRIP</p>
         </div>
       </section>
