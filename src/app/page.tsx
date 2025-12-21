@@ -54,7 +54,7 @@ export default function HomePage() {
         <div className="relative z-20 text-center px-4 max-w-5xl">
           {/* Logo */}
           <div className="mb-8 animate-fade-in">
-            <Logo size="xl" />
+            <Logo size="hero" />
           </div>
 
           {/* Location tag */}

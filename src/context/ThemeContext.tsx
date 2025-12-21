@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react'
 
 type Theme = 'light' | 'dark'
 
@@ -10,46 +10,63 @@ interface ThemeContextType {
   setTheme: (theme: Theme) => void
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'dark',
+  toggleTheme: () => {},
+  setTheme: () => {},
+})
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setThemeState] = useState<Theme>('dark')
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-    // Check for saved preference or system preference
-    const savedTheme = localStorage.getItem('theme') as Theme | null
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const applyTheme = useCallback((newTheme: Theme) => {
+    if (typeof window === 'undefined') return
     
-    if (savedTheme) {
-      setTheme(savedTheme)
-    } else if (systemPrefersDark) {
-      setTheme('dark')
+    const root = document.documentElement
+    const body = document.body
+    
+    if (newTheme === 'dark') {
+      root.classList.add('dark')
+      root.classList.remove('light')
+      body.classList.add('dark')
+      body.classList.remove('light')
+    } else {
+      root.classList.remove('dark')
+      root.classList.add('light')
+      body.classList.remove('dark')
+      body.classList.add('light')
     }
   }, [])
 
   useEffect(() => {
-    if (!mounted) return
+    setMounted(true)
     
-    const root = document.documentElement
-    if (theme === 'dark') {
-      root.classList.add('dark')
+    // Check for saved preference or system preference
+    const savedTheme = localStorage.getItem('running-to-god-theme') as Theme | null
+    
+    if (savedTheme) {
+      setThemeState(savedTheme)
+      applyTheme(savedTheme)
     } else {
-      root.classList.remove('dark')
+      // Default to dark
+      setThemeState('dark')
+      applyTheme('dark')
     }
-    localStorage.setItem('theme', theme)
-  }, [theme, mounted])
+  }, [applyTheme])
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light')
-  }
+  const setTheme = useCallback((newTheme: Theme) => {
+    setThemeState(newTheme)
+    localStorage.setItem('running-to-god-theme', newTheme)
+    applyTheme(newTheme)
+  }, [applyTheme])
 
-  // Prevent flash of unstyled content
-  if (!mounted) {
-    return null
-  }
+  const toggleTheme = useCallback(() => {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setTheme(newTheme)
+  }, [theme, setTheme])
 
+  // Always render children - avoid SSR issues
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
       {children}
@@ -58,9 +75,5 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider')
-  }
-  return context
+  return useContext(ThemeContext)
 }
