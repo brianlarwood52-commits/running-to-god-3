@@ -2,187 +2,177 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    /* Light mode - Open Sky Journey */
-    --background: 195 100% 98%;
-    --foreground: 200 50% 10%;
-    --card: 195 50% 96%;
-    --card-foreground: 200 50% 10%;
-    --primary: 189 94% 43%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 38 92% 50%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 195 30% 90%;
-    --muted-foreground: 200 20% 40%;
-    --accent: 189 80% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 195 30% 85%;
-  }
-
-  .dark {
-    /* Dark mode - Starlit Road */
-    --background: 222 47% 5%;
-    --foreground: 210 40% 95%;
-    --card: 222 40% 10%;
-    --card-foreground: 210 40% 95%;
-    --primary: 199 89% 48%;
-    --primary-foreground: 222 47% 5%;
-    --secondary: 38 92% 50%;
-    --secondary-foreground: 222 47% 5%;
-    --muted: 222 30% 15%;
-    --muted-foreground: 210 20% 60%;
-    --accent: 199 70% 55%;
-    --accent-foreground: 222 47% 5%;
-    --border: 222 30% 20%;
-  }
-}
+/* Import a more rugged font */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
 
 @layer base {
   body {
-    @apply bg-sky-50 text-abyss-900 dark:bg-abyss-950 dark:text-abyss-100;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-stone-100 text-stone-900 dark:bg-stone-950 dark:text-stone-100;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display;
+  h1, h2, h3, h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .handwritten {
+    font-family: 'Caveat', cursive;
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Red Earth - Australian Outback */
+:root {
+  --red-earth: #8B2500;
+  --ochre: #CC7722;
+  --dust: #D4A574;
+  --spinifex: #8B8B3A;
+  --night-sky: #0A1628;
+  --campfire: #FF6B35;
+  --road-grey: #4A4A4A;
 }
 
-/* Stars animation for dark mode */
-.stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* Dusty texture overlay */
+.dust-texture {
+  position: relative;
+}
+.dust-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
+  mix-blend-mode: overlay;
+}
+
+/* Endless road animation */
+@keyframes roadScroll {
+  0% { background-position: center 0; }
+  100% { background-position: center 100px; }
+}
+
+.road-animation {
+  animation: roadScroll 2s linear infinite;
+}
+
+/* Stars twinkling */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
 }
 
 .star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0;
-  animation: twinkle 4s ease-in-out infinite;
+  animation: twinkle 3s ease-in-out infinite;
 }
 
-.dark .star {
-  opacity: 0.6;
+/* Campfire flicker */
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  25% { opacity: 0.9; transform: scale(1.02); }
+  50% { opacity: 1; transform: scale(0.98); }
+  75% { opacity: 0.85; transform: scale(1.01); }
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.2); }
+.campfire-glow {
+  animation: flicker 0.5s ease-in-out infinite;
 }
 
-/* Road markings animation */
-.road-markings {
+/* Dust cloud animation */
+@keyframes dustFloat {
+  0%, 100% { transform: translateX(0) translateY(0); opacity: 0.3; }
+  50% { transform: translateX(10px) translateY(-5px); opacity: 0.5; }
+}
+
+.dust-particle {
+  animation: dustFloat 4s ease-in-out infinite;
+}
+
+/* Road markings */
+.road-marking {
   background: repeating-linear-gradient(
-    to top,
-    transparent 0,
-    transparent 20px,
-    white 20px,
-    white 40px
+    to bottom,
+    white 0px,
+    white 30px,
+    transparent 30px,
+    transparent 60px
   );
-  animation: roadMove 1s linear infinite;
 }
 
-@keyframes roadMove {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 60px; }
+/* Kilometre marker style */
+.km-marker {
+  @apply font-mono text-xs tracking-widest;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 
-/* Smooth transitions for theme switching */
-*, *::before, *::after {
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+/* Roadhouse sign style */
+.roadhouse-sign {
+  background: linear-gradient(135deg, #8B4513 0%, #654321 100%);
+  box-shadow: 
+    inset 0 2px 4px rgba(255,255,255,0.1),
+    0 4px 8px rgba(0,0,0,0.3),
+    0 0 0 3px #5D3A1A;
 }
 
-/* Scripture verse styling */
-.scripture {
-  @apply italic text-sky-800 dark:text-sky-300;
-  font-family: Georgia, serif;
+/* Card styles - like worn paper/map */
+.adventure-card {
+  @apply relative bg-stone-50 dark:bg-stone-900 rounded-lg overflow-hidden;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.adventure-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #CC7722, #8B2500, #CC7722);
 }
 
 /* Button styles */
-.btn-primary {
-  @apply bg-sky-600 hover:bg-sky-700 text-white 
-         dark:bg-sky-500 dark:hover:bg-sky-600
-         px-6 py-3 rounded-lg font-medium transition-all
-         shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+.btn-adventure {
+  @apply px-6 py-3 font-bold uppercase tracking-wider transition-all;
+  background: linear-gradient(135deg, #CC7722 0%, #8B2500 100%);
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 0 #5D2000, 0 6px 10px rgba(0,0,0,0.3);
+}
+.btn-adventure:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #5D2000, 0 8px 15px rgba(0,0,0,0.3);
+}
+.btn-adventure:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #5D2000, 0 4px 6px rgba(0,0,0,0.3);
 }
 
-.btn-secondary {
-  @apply border-2 border-sky-600 text-sky-700 hover:bg-sky-600 hover:text-white
-         dark:border-sky-400 dark:text-sky-300 dark:hover:bg-sky-500 dark:hover:text-white
-         px-6 py-3 rounded-lg font-medium transition-all;
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.btn-accent {
-  @apply bg-horizon-500 hover:bg-horizon-600 text-white 
-         dark:bg-horizon-500 dark:hover:bg-horizon-600
-         px-6 py-3 rounded-lg font-medium transition-all
-         shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #D4A574;
+}
+::-webkit-scrollbar-thumb {
+  background: #8B2500;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #CC7722;
 }
 
-/* Card styling */
-.card {
-  @apply bg-white/90 dark:bg-abyss-800/90 backdrop-blur-sm
-         border border-sky-200 dark:border-abyss-700
-         rounded-xl p-6 shadow-lg;
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1c1917;
 }
-
-/* Gradient text for headings - matches logo colors */
-.gradient-text {
-  @apply bg-gradient-to-r from-sky-600 via-sky-500 to-sky-400
-         dark:from-sky-400 dark:via-sky-300 dark:to-sky-200
-         bg-clip-text text-transparent;
-}
-
-/* Road perspective effect */
-.road-perspective {
-  perspective: 500px;
-}
-
-.road-surface {
-  transform: rotateX(60deg);
-  transform-origin: bottom center;
-}
-
-/* Cross glow effect */
-.cross-glow {
-  filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
-}
-
-.dark .cross-glow {
-  filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.6));
-}
-
-/* Hero gradient overlay */
-.hero-gradient {
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(6, 182, 212, 0.05) 50%,
-    rgba(6, 182, 212, 0.1) 100%
-  );
-}
-
-.dark .hero-gradient {
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(8, 51, 68, 0.5) 50%,
-    rgba(8, 51, 68, 0.8) 100%
-  );
+.dark ::-webkit-scrollbar-thumb {
+  background: #CC7722;
 }

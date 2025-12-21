@@ -2,98 +2,89 @@
 
 import React from 'react'
 import Link from 'next/link'
-import Logo from './Logo'
-import { Heart, Compass, BookOpen, Mail, Tent } from 'lucide-react'
+import { Compass, Heart, MapPin, Tent, Fuel, Mail } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-sky-100 dark:bg-abyss-900 border-t border-sky-200 dark:border-abyss-800">
+    <footer className="bg-stone-900 border-t-4 border-earth-700">
+      {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Logo size="md" />
-              <span className="font-display text-xl font-bold text-abyss-900 dark:text-white">
-                Running to God
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-gradient-to-br from-earth-500 to-earth-700 rounded flex items-center justify-center">
+                <Compass className="h-6 w-6 text-white" />
+              </div>
+              <span className="font-display text-2xl text-white tracking-wider">
+                RUNNING TO GOD
               </span>
             </div>
-            <p className="text-abyss-600 dark:text-abyss-400 text-sm max-w-xs">
-              A journey of faith from Perth to Port Lincoln. Finding God on the open road, 
-              under starlit skies, and around the campfire.
+            <p className="text-dust-400 text-sm max-w-md mb-4">
+              A ministry born from a 2,500km road trip across the Australian outback. 
+              Finding God on dusty roads, at roadhouse stops, and under starlit skies.
+            </p>
+            <p className="font-mono text-xs text-dust-600 tracking-widest">
+              PERTH → NORSEMAN → NULLARBOR → CEDUNA → PORT LINCOLN
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="font-display font-semibold text-abyss-900 dark:text-white">
-              Explore the Journey
+          {/* Navigation */}
+          <div>
+            <h3 className="font-display text-lg text-earth-500 tracking-wider mb-4">
+              NAVIGATE
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  href="/journey" 
-                  className="text-abyss-600 dark:text-abyss-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors text-sm flex items-center gap-2"
-                >
-                  <Compass className="h-4 w-4" />
-                  The Road Ahead
+                <Link href="/journey" className="text-dust-400 hover:text-white transition-colors text-sm flex items-center gap-2">
+                  <MapPin className="h-3 w-3" /> The Journey
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/devotions" 
-                  className="text-abyss-600 dark:text-abyss-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors text-sm flex items-center gap-2"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  Daily Devotions
+                <Link href="/campfire" className="text-dust-400 hover:text-white transition-colors text-sm flex items-center gap-2">
+                  <Tent className="h-3 w-3" /> Campfire Tales
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/campfire" 
-                  className="text-abyss-600 dark:text-abyss-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors text-sm flex items-center gap-2"
-                >
-                  <Tent className="h-4 w-4" />
-                  Campfire Stories
+                <Link href="/devotions" className="text-dust-400 hover:text-white transition-colors text-sm flex items-center gap-2">
+                  <Fuel className="h-3 w-3" /> Fuel Stop
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/contact" 
-                  className="text-abyss-600 dark:text-abyss-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors text-sm flex items-center gap-2"
-                >
-                  <Mail className="h-4 w-4" />
-                  Get in Touch
+                <Link href="/contact" className="text-dust-400 hover:text-white transition-colors text-sm flex items-center gap-2">
+                  <Mail className="h-3 w-3" /> Contact
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Scripture */}
-          <div className="space-y-4">
-            <h3 className="font-display font-semibold text-abyss-900 dark:text-white">
-              Journey Verse
+          <div>
+            <h3 className="font-display text-lg text-earth-500 tracking-wider mb-4">
+              ROAD VERSE
             </h3>
-            <blockquote className="scripture text-sm border-l-2 border-sky-500 dark:border-sky-400 pl-4">
+            <blockquote className="text-dust-300 text-sm italic border-l-2 border-earth-700 pl-4">
               &ldquo;Your word is a lamp for my feet, a light on my path.&rdquo;
-              <footer className="text-abyss-500 dark:text-abyss-500 mt-1 not-italic">
+              <footer className="text-dust-600 mt-2 not-italic font-mono text-xs">
                 — Psalm 119:105
               </footer>
             </blockquote>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-sky-200 dark:border-abyss-800">
+      {/* Bottom Bar */}
+      <div className="border-t border-stone-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-abyss-500 dark:text-abyss-500 text-sm">
-              © {currentYear} Running to God Ministry. All rights reserved.
+            <p className="text-dust-600 text-xs font-mono tracking-wide">
+              © {currentYear} RUNNING TO GOD MINISTRY
             </p>
-            <div className="flex items-center gap-1 text-abyss-500 dark:text-abyss-500 text-sm">
-              Made with <Heart className="h-4 w-4 text-sky-500 dark:text-sky-400 mx-1 fill-current" /> 
-              from Perth to Port Lincoln
+            <div className="flex items-center gap-1 text-dust-600 text-xs">
+              Made with <Heart className="h-3 w-3 text-campfire-500 mx-1 fill-current" /> 
+              on the road from Perth to Port Lincoln
             </div>
           </div>
         </div>

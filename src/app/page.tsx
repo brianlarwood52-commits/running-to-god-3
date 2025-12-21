@@ -2,330 +2,364 @@
 
 import React from 'react'
 import Link from 'next/link'
-import Logo from '@/components/Logo'
 import { 
   Compass, 
-  BookOpen, 
-  Tent, 
-  Heart, 
-  ArrowRight, 
   MapPin,
+  Fuel,
+  Tent,
   Star,
-  Mountain,
-  Sunrise
+  Sun,
+  Moon,
+  ChevronDown,
+  ArrowRight
 } from 'lucide-react'
 
 export default function HomePage() {
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-100 via-sky-50 to-white 
-                       dark:from-abyss-900 dark:via-abyss-950 dark:to-abyss-950" />
+    <div className="relative overflow-hidden">
+      {/* HERO - Full screen road to horizon */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Sky gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-200 via-orange-300 to-earth-700 dark:from-night-900 dark:via-night-800 dark:to-night-950" />
         
-        {/* Decorative road lines */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Perspective road effect */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl">
-            <svg viewBox="0 0 800 400" className="w-full h-auto opacity-20 dark:opacity-30">
-              <defs>
-                <linearGradient id="roadGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-                  <stop offset="0%" stopColor="currentColor" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              {/* Road perspective lines */}
-              <path d="M400 400 L0 300" stroke="currentColor" strokeWidth="1" fill="none" className="text-sky-600 dark:text-sky-400" />
-              <path d="M400 400 L800 300" stroke="currentColor" strokeWidth="1" fill="none" className="text-sky-600 dark:text-sky-400" />
-              <path d="M400 400 L200 250" stroke="currentColor" strokeWidth="1" fill="none" className="text-sky-600 dark:text-sky-400" />
-              <path d="M400 400 L600 250" stroke="currentColor" strokeWidth="1" fill="none" className="text-sky-600 dark:text-sky-400" />
-              <path d="M400 400 L300 200" stroke="currentColor" strokeWidth="1" fill="none" className="text-sky-600 dark:text-sky-400" />
-              <path d="M400 400 L500 200" stroke="currentColor" strokeWidth="1" fill="none" className="text-sky-600 dark:text-sky-400" />
-              {/* Center road */}
-              <path d="M400 400 L400 50" stroke="currentColor" strokeWidth="3" fill="none" className="text-sky-500 dark:text-sky-300" />
-            </svg>
-          </div>
+        {/* Sun/Moon */}
+        <div className="absolute top-20 left-1/2 -translate-x-1/2">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-b from-yellow-200 to-orange-400 dark:from-gray-200 dark:to-gray-400 blur-sm opacity-80" />
+        </div>
+        
+        {/* Stars (dark mode only) */}
+        <div className="absolute inset-0 dark:block hidden">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full star"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 50}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                opacity: Math.random() * 0.8 + 0.2,
+              }}
+            />
+          ))}
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-          {/* Logo */}
-          <div className="flex justify-center mb-8 animate-fade-in">
-            <Logo size="xl" className="drop-shadow-xl" />
-          </div>
+        {/* Distant hills/horizon */}
+        <div className="absolute bottom-[30%] left-0 right-0">
+          <svg viewBox="0 0 1440 120" className="w-full" preserveAspectRatio="none">
+            <path 
+              d="M0,60 Q360,20 720,50 T1440,40 L1440,120 L0,120 Z" 
+              className="fill-earth-600 dark:fill-stone-800"
+            />
+          </svg>
+        </div>
+        
+        {/* Red earth ground */}
+        <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-earth-800 via-earth-700 to-earth-600 dark:from-stone-900 dark:via-stone-800 dark:to-stone-700" />
+        
+        {/* THE ROAD - Perspective */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-xs">
+          <svg viewBox="0 0 200 300" className="w-full">
+            {/* Road surface */}
+            <path 
+              d="M60,300 L90,0 L110,0 L140,300 Z" 
+              className="fill-road-700 dark:fill-road-800"
+            />
+            {/* Road edges */}
+            <path d="M60,300 L90,0" className="stroke-dust-300 stroke-1 fill-none" />
+            <path d="M140,300 L110,0" className="stroke-dust-300 stroke-1 fill-none" />
+            {/* Center line markings */}
+            <g className="road-animation">
+              <rect x="98" y="20" width="4" height="25" className="fill-yellow-400" />
+              <rect x="98" y="60" width="4" height="25" className="fill-yellow-400" />
+              <rect x="98" y="100" width="4" height="25" className="fill-yellow-400" />
+              <rect x="98" y="140" width="4" height="30" className="fill-yellow-400" />
+              <rect x="97" y="185" width="6" height="35" className="fill-yellow-400" />
+              <rect x="96" y="240" width="8" height="40" className="fill-yellow-400" />
+            </g>
+            {/* Cross at horizon */}
+            <rect x="96" y="5" width="8" height="30" className="fill-white dark:fill-gray-300" rx="1" />
+            <rect x="88" y="10" width="24" height="6" className="fill-white dark:fill-gray-300" rx="1" />
+          </svg>
+        </div>
 
-          {/* Main Heading */}
-          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up">
-            <span className="text-abyss-900 dark:text-white">Running to </span>
-            <span className="gradient-text">God</span>
+        {/* Dust particles */}
+        <div className="absolute bottom-[20%] left-[20%] w-3 h-3 bg-dust-300/40 rounded-full dust-particle" style={{ animationDelay: '0s' }} />
+        <div className="absolute bottom-[25%] right-[25%] w-2 h-2 bg-dust-300/30 rounded-full dust-particle" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-[15%] left-[40%] w-4 h-4 bg-dust-300/20 rounded-full dust-particle" style={{ animationDelay: '2s' }} />
+
+        {/* Content overlay */}
+        <div className="relative z-10 text-center px-4 mb-32">
+          <p className="font-hand text-2xl md:text-3xl text-earth-900 dark:text-dust-200 mb-2 animate-fade-in">
+            Perth → Nullarbor → Port Lincoln
+          </p>
+          
+          <h1 className="font-display text-7xl md:text-9xl text-white drop-shadow-lg mb-4 animate-slide-up tracking-wider">
+            RUNNING TO GOD
           </h1>
-
-          {/* Tagline */}
-          <p className="text-xl sm:text-2xl text-abyss-600 dark:text-abyss-300 mb-4 animate-slide-up font-display italic">
-            A Journey of Faith Across the Nullarbor
+          
+          <p className="text-xl md:text-2xl text-dust-100 dark:text-dust-300 max-w-2xl mx-auto mb-8 animate-fade-in font-light">
+            2,500 km of red dirt, endless horizons, and starlit nights.
+            <br />
+            <span className="font-hand text-2xl md:text-3xl">A journey that changed everything.</span>
           </p>
 
-          {/* Description */}
-          <p className="text-lg text-abyss-500 dark:text-abyss-400 max-w-2xl mx-auto mb-8 animate-slide-up">
-            From Perth to Port Lincoln, a road trip became a pilgrimage. 
-            Discover how the open road, starlit nights, and quiet moments 
-            around the campfire led to a deeper connection with God.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
-            <Link href="/journey" className="btn-primary inline-flex items-center justify-center gap-2">
-              <Compass className="h-5 w-5" />
-              Begin the Journey
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="/about" className="btn-secondary inline-flex items-center justify-center gap-2">
-              <Heart className="h-5 w-5" />
-              Learn More
-            </Link>
+          {/* KM counter */}
+          <div className="inline-flex items-center gap-2 bg-road-700/80 backdrop-blur px-4 py-2 rounded mb-8">
+            <span className="font-mono text-green-400 text-lg">KM</span>
+            <span className="font-mono text-white text-2xl tracking-widest">0000</span>
           </div>
 
-          {/* Journey Stats */}
-          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 animate-fade-in">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-sky-600 dark:text-sky-400">2,500+</div>
-              <div className="text-sm text-abyss-500 dark:text-abyss-400">Kilometres</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-sky-600 dark:text-sky-400">14</div>
-              <div className="text-sm text-abyss-500 dark:text-abyss-400">Days on Road</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-sky-600 dark:text-sky-400">∞</div>
-              <div className="text-sm text-abyss-500 dark:text-abyss-400">Starlit Nights</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-sky-600 dark:text-sky-400">1</div>
-              <div className="text-sm text-abyss-500 dark:text-abyss-400">Life Changed</div>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
+            <Link href="/journey" className="btn-adventure inline-flex items-center gap-2">
+              <Compass className="h-5 w-5" />
+              START THE JOURNEY
+            </Link>
+            <Link 
+              href="/about" 
+              className="px-6 py-3 border-2 border-white/50 text-white rounded font-bold uppercase tracking-wider hover:bg-white/10 transition-all"
+            >
+              THE STORY
+            </Link>
           </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-sky-400 dark:border-sky-500 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-sky-400 dark:bg-sky-500 rounded-full animate-pulse" />
-          </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 animate-bounce">
+          <ChevronDown className="h-8 w-8" />
         </div>
       </section>
 
-      {/* Featured Scripture */}
-      <section className="py-16 bg-sky-600 dark:bg-sky-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full" 
-               style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        </div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Star className="h-8 w-8 text-sky-200 mx-auto mb-6" />
-          <blockquote className="text-2xl sm:text-3xl font-display italic text-white mb-4">
-            &ldquo;Trust in the Lord with all your heart and lean not on your own understanding; 
-            in all your ways submit to him, and he will make your paths straight.&rdquo;
-          </blockquote>
-          <cite className="text-sky-200 text-lg">— Proverbs 3:5-6</cite>
-        </div>
-      </section>
-
-      {/* Ministry Sections */}
-      <section className="py-20 bg-white dark:bg-abyss-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ROAD SIGNS SECTION */}
+      <section className="relative py-20 bg-earth-700 dark:bg-stone-900 overflow-hidden">
+        {/* Texture overlay */}
+        <div className="absolute inset-0 dust-texture" />
+        
+        <div className="relative max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-display text-4xl font-bold text-abyss-900 dark:text-white mb-4">
-              Explore the Journey
+            <h2 className="font-display text-5xl md:text-6xl text-dust-100 mb-4 tracking-wide">
+              THE ROAD AHEAD
             </h2>
-            <p className="text-lg text-abyss-600 dark:text-abyss-400 max-w-2xl mx-auto">
-              Whether you&apos;re seeking daily encouragement, stories from the road, 
-              or a deeper understanding of faith, there&apos;s a path for you here.
+            <p className="font-hand text-2xl text-dust-300">
+              Every kilometre tells a story
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* The Journey Card */}
-            <Link href="/journey" className="card group hover:border-sky-400 dark:hover:border-sky-500 transition-all hover:-translate-y-1">
-              <div className="h-12 w-12 bg-sky-100 dark:bg-sky-900/50 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Compass className="h-6 w-6 text-sky-600 dark:text-sky-400" />
+          {/* Roadhouse-style cards */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* The Journey */}
+            <Link href="/journey" className="group">
+              <div className="roadhouse-sign p-6 text-center transform hover:-rotate-1 hover:scale-105 transition-all">
+                <div className="w-16 h-16 mx-auto mb-4 bg-yellow-400 rounded-full flex items-center justify-center">
+                  <MapPin className="h-8 w-8 text-earth-800" />
+                </div>
+                <h3 className="font-display text-3xl text-yellow-400 mb-2">THE JOURNEY</h3>
+                <p className="text-dust-200 text-sm mb-4">
+                  From the suburbs of Perth to the edge of the continent
+                </p>
+                <span className="font-mono text-xs text-dust-400">2,500 KM →</span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-abyss-900 dark:text-white mb-2">
-                The Journey
-              </h3>
-              <p className="text-abyss-600 dark:text-abyss-400 text-sm mb-4">
-                Follow the road from Perth across the vast Nullarbor to Port Lincoln. 
-                Each stop along the way holds lessons about faith and life.
-              </p>
-              <span className="text-sky-600 dark:text-sky-400 text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                Start exploring <ArrowRight className="h-4 w-4" />
-              </span>
             </Link>
 
-            {/* Devotions Card */}
-            <Link href="/devotions" className="card group hover:border-sky-400 dark:hover:border-sky-500 transition-all hover:-translate-y-1">
-              <div className="h-12 w-12 bg-horizon-100 dark:bg-horizon-900/50 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <BookOpen className="h-6 w-6 text-horizon-600 dark:text-horizon-400" />
+            {/* Roadhouse Stories */}
+            <Link href="/campfire" className="group">
+              <div className="roadhouse-sign p-6 text-center transform hover:rotate-1 hover:scale-105 transition-all">
+                <div className="w-16 h-16 mx-auto mb-4 bg-campfire-500 rounded-full flex items-center justify-center campfire-glow">
+                  <Tent className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="font-display text-3xl text-campfire-400 mb-2">CAMPFIRE TALES</h3>
+                <p className="text-dust-200 text-sm mb-4">
+                  Stories from roadhouses, rest stops, and starlit nights
+                </p>
+                <span className="font-mono text-xs text-dust-400">GATHER &apos;ROUND →</span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-abyss-900 dark:text-white mb-2">
-                Daily Devotions
-              </h3>
-              <p className="text-abyss-600 dark:text-abyss-400 text-sm mb-4">
-                Start each day with encouraging words, scripture, and reflections 
-                inspired by the journey and God&apos;s amazing creation.
-              </p>
-              <span className="text-sky-600 dark:text-sky-400 text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                Read today&apos;s devotion <ArrowRight className="h-4 w-4" />
-              </span>
             </Link>
 
-            {/* Campfire Stories Card */}
-            <Link href="/campfire" className="card group hover:border-sky-400 dark:hover:border-sky-500 transition-all hover:-translate-y-1">
-              <div className="h-12 w-12 bg-orange-100 dark:bg-orange-900/50 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Tent className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+            {/* Fuel for the Soul */}
+            <Link href="/devotions" className="group">
+              <div className="roadhouse-sign p-6 text-center transform hover:-rotate-1 hover:scale-105 transition-all">
+                <div className="w-16 h-16 mx-auto mb-4 bg-bight-500 rounded-full flex items-center justify-center">
+                  <Fuel className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="font-display text-3xl text-bight-400 mb-2">FUEL STOP</h3>
+                <p className="text-dust-200 text-sm mb-4">
+                  Daily devotions to refuel your spirit on life&apos;s highway
+                </p>
+                <span className="font-mono text-xs text-dust-400">FILL UP →</span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-abyss-900 dark:text-white mb-2">
-                Campfire Stories
-              </h3>
-              <p className="text-abyss-600 dark:text-abyss-400 text-sm mb-4">
-                Gather &apos;round the fire and share in stories of faith, adventure, 
-                and the quiet moments where God speaks the loudest.
-              </p>
-              <span className="text-sky-600 dark:text-sky-400 text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                Hear the stories <ArrowRight className="h-4 w-4" />
-              </span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* The Route Map Section */}
-      <section className="py-20 bg-sky-50 dark:bg-abyss-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="font-display text-4xl font-bold text-abyss-900 dark:text-white mb-6">
-                The Road Less Travelled
-              </h2>
-              <p className="text-lg text-abyss-600 dark:text-abyss-400 mb-6">
-                What started as a road trip became something more. Driving across 
-                the Nullarbor Plain, I found myself on a journey not just across 
-                Australia, but towards a deeper understanding of who God is and 
-                who I am in Him.
-              </p>
-              <p className="text-lg text-abyss-600 dark:text-abyss-400 mb-8">
-                The endless horizons, the quiet nights under a blanket of stars, 
-                the small towns and big conversations—each moment became a 
-                stepping stone on the path of faith.
-              </p>
-              
-              {/* Route highlights */}
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-sky-200 dark:bg-sky-800 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-sky-600 dark:text-sky-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-abyss-900 dark:text-white">Perth, Western Australia</h4>
-                    <p className="text-sm text-abyss-500 dark:text-abyss-400">Where the journey began</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-sky-200 dark:bg-sky-800 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mountain className="h-5 w-5 text-sky-600 dark:text-sky-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-abyss-900 dark:text-white">The Nullarbor Plain</h4>
-                    <p className="text-sm text-abyss-500 dark:text-abyss-400">1,200 km of endless horizon</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-sky-200 dark:bg-sky-800 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Sunrise className="h-5 w-5 text-sky-600 dark:text-sky-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-abyss-900 dark:text-white">Port Lincoln, South Australia</h4>
-                    <p className="text-sm text-abyss-500 dark:text-abyss-400">Where new beginnings awaited</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Visual representation */}
-            <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-sky-200 via-sky-100 to-white 
-                             dark:from-abyss-800 dark:via-abyss-850 dark:to-abyss-900 
-                             rounded-3xl shadow-xl overflow-hidden">
-                {/* Stylized map/journey visual */}
-                <svg viewBox="0 0 400 400" className="w-full h-full p-8">
-                  {/* Road path */}
-                  <path 
-                    d="M50 350 Q100 300 150 280 Q200 260 250 200 Q300 140 350 50" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="4"
-                    strokeDasharray="10,5"
-                    className="text-sky-500 dark:text-sky-400"
-                  />
-                  
-                  {/* Start point - Perth */}
-                  <circle cx="50" cy="350" r="12" className="fill-sky-600 dark:fill-sky-500" />
-                  <text x="70" y="355" className="fill-abyss-700 dark:fill-abyss-300 text-xs font-medium">Perth</text>
-                  
-                  {/* Middle - Nullarbor */}
-                  <circle cx="200" cy="230" r="8" className="fill-sky-400 dark:fill-sky-500" />
-                  <text x="160" y="260" className="fill-abyss-600 dark:fill-abyss-400 text-xs">Nullarbor</text>
-                  
-                  {/* End point - Port Lincoln */}
-                  <circle cx="350" cy="50" r="12" className="fill-horizon-500" />
-                  <text x="270" y="45" className="fill-abyss-700 dark:fill-abyss-300 text-xs font-medium">Port Lincoln</text>
-                  
-                  {/* Cross at destination */}
-                  <path d="M350 30 L350 70 M330 50 L370 50" stroke="currentColor" strokeWidth="3" className="text-horizon-500" />
-                  
-                  {/* Decorative stars */}
-                  <circle cx="100" cy="100" r="2" className="fill-sky-400 dark:fill-sky-300 animate-pulse" />
-                  <circle cx="300" cy="150" r="2" className="fill-sky-400 dark:fill-sky-300 animate-pulse" />
-                  <circle cx="150" cy="50" r="2" className="fill-sky-400 dark:fill-sky-300 animate-pulse" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-sky-600 to-sky-700 dark:from-sky-800 dark:to-sky-900 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 opacity-10" 
-               style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M30 0L60 30L30 60L0 30z\' fill=\'none\' stroke=\'white\' stroke-width=\'0.5\'/%3E%3C/svg%3E")' }} />
-        </div>
+      {/* THE NULLARBOR - Dramatic section */}
+      <section className="relative py-32 overflow-hidden">
+        {/* Full width image-like gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-earth-600 via-dust-400 to-earth-600 dark:from-stone-800 dark:via-stone-700 dark:to-stone-800" />
         
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="font-display text-4xl font-bold text-white mb-6">
-            Ready to Start Your Journey?
-          </h2>
-          <p className="text-xl text-sky-100 mb-8 max-w-2xl mx-auto">
-            Whether you&apos;re at a crossroads in life or simply seeking a deeper connection 
-            with God, there&apos;s a road waiting for you.
+        {/* Horizon line */}
+        <div className="absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-dust-600 to-transparent" />
+        
+        <div className="relative max-w-5xl mx-auto px-4 text-center">
+          <p className="font-mono text-sm text-earth-800 dark:text-dust-400 tracking-widest mb-4">
+            — NULLARBOR PLAIN —
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/journey" 
-              className="bg-white text-sky-700 hover:bg-sky-50 px-8 py-4 rounded-lg font-semibold 
-                        transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2"
-            >
-              <Compass className="h-5 w-5" />
-              Begin the Journey
-            </Link>
-            <Link 
-              href="/contact" 
-              className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-lg 
-                        font-semibold transition-all inline-flex items-center justify-center gap-2"
-            >
-              Get in Touch
+          <h2 className="font-display text-6xl md:text-8xl text-earth-900 dark:text-dust-100 mb-6 tracking-wide">
+            1,200 KM OF NOTHING
+          </h2>
+          <p className="text-xl text-earth-800 dark:text-dust-300 max-w-2xl mx-auto mb-4">
+            No trees. No towns. Just you, the road, and the endless horizon.
+          </p>
+          <p className="font-hand text-3xl text-earth-700 dark:text-dust-400">
+            &ldquo;In the emptiness, I finally heard God&apos;s voice.&rdquo;
+          </p>
+        </div>
+      </section>
+
+      {/* GREAT AUSTRALIAN BIGHT */}
+      <section className="relative py-24 bg-gradient-to-b from-bight-600 to-bight-800 dark:from-bight-900 dark:to-night-950 overflow-hidden">
+        {/* Wave pattern */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 100" className="w-full" preserveAspectRatio="none">
+            <path 
+              d="M0,50 Q360,100 720,50 T1440,50 L1440,100 L0,100 Z" 
+              className="fill-bight-800 dark:fill-night-900 opacity-50"
+            />
+            <path 
+              d="M0,70 Q360,30 720,70 T1440,70 L1440,100 L0,100 Z" 
+              className="fill-bight-900 dark:fill-night-950"
+            />
+          </svg>
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="font-mono text-xs text-bight-200 tracking-widest mb-2">KILOMETRE 1,847</p>
+              <h2 className="font-display text-5xl md:text-6xl text-white mb-6 tracking-wide">
+                THE GREAT AUSTRALIAN BIGHT
+              </h2>
+              <p className="text-lg text-bight-100 mb-6">
+                Standing at the edge of the continent, watching 100-metre cliffs plunge into the Southern Ocean. 
+                Whales breaching in the distance. The sheer scale of God&apos;s creation, overwhelming.
+              </p>
+              <p className="font-hand text-2xl text-bight-200">
+                Sometimes you need to stand at the edge to find your center.
+              </p>
+            </div>
+            
+            {/* Cliff illustration */}
+            <div className="relative h-64 md:h-80">
+              <svg viewBox="0 0 300 200" className="w-full h-full">
+                {/* Ocean */}
+                <rect x="0" y="100" width="300" height="100" className="fill-bight-700" />
+                {/* Cliff face */}
+                <path d="M0,50 L50,45 L80,60 L120,40 L150,55 L180,35 L220,50 L260,40 L300,55 L300,100 L0,100 Z" className="fill-dust-400" />
+                <path d="M0,55 L50,50 L80,65 L120,45 L150,60 L180,40 L220,55 L260,45 L300,60 L300,100 L0,100 Z" className="fill-earth-600" />
+                {/* Waves */}
+                <path d="M0,120 Q75,110 150,120 T300,120" className="fill-none stroke-bight-400 stroke-2" />
+                <path d="M0,140 Q75,130 150,140 T300,140" className="fill-none stroke-bight-300 stroke-1" />
+                {/* Whale spout */}
+                <ellipse cx="220" cy="115" rx="8" ry="3" className="fill-bight-800" />
+                <path d="M220,115 Q222,105 225,100 M220,115 Q218,105 215,100" className="fill-none stroke-white stroke-1" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NIGHT CAMP SECTION */}
+      <section className="relative py-24 bg-night-900 dark:bg-night-950 overflow-hidden">
+        {/* Stars */}
+        <div className="absolute inset-0">
+          {[...Array(80)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full star"
+              style={{
+                width: `${Math.random() * 3 + 1}px`,
+                height: `${Math.random() * 3 + 1}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Milky Way suggestion */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent rotate-12" />
+
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
+          <div className="mb-8">
+            {/* Campfire icon */}
+            <div className="inline-block relative">
+              <div className="w-20 h-20 bg-gradient-to-t from-campfire-600 to-campfire-400 rounded-full blur-xl opacity-50 campfire-glow" />
+              <Tent className="absolute inset-0 m-auto h-12 w-12 text-dust-300" />
+            </div>
+          </div>
+
+          <p className="font-mono text-xs text-dust-500 tracking-widest mb-4">
+            — SOMEWHERE ON THE NULLARBOR, 2AM —
+          </p>
+          
+          <h2 className="font-display text-5xl md:text-7xl text-white mb-8 tracking-wide">
+            UNDER A BILLION STARS
+          </h2>
+          
+          <blockquote className="text-2xl md:text-3xl text-dust-300 italic mb-6 font-light">
+            &ldquo;The heavens declare the glory of God; the skies proclaim the work of his hands.&rdquo;
+          </blockquote>
+          <cite className="text-dust-500 font-hand text-xl">— Psalm 19:1</cite>
+          
+          <div className="mt-12">
+            <Link href="/campfire" className="inline-flex items-center gap-3 text-campfire-400 hover:text-campfire-300 transition-colors">
+              <span className="font-display text-xl tracking-wider">JOIN US AROUND THE FIRE</span>
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* JOURNEY STATS */}
+      <section className="relative py-16 bg-stone-200 dark:bg-stone-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <p className="font-display text-5xl md:text-6xl text-earth-700 dark:text-earth-500">2,547</p>
+              <p className="font-mono text-xs text-stone-600 dark:text-stone-400 tracking-widest">KILOMETRES</p>
+            </div>
+            <div>
+              <p className="font-display text-5xl md:text-6xl text-earth-700 dark:text-earth-500">14</p>
+              <p className="font-mono text-xs text-stone-600 dark:text-stone-400 tracking-widest">DAYS</p>
+            </div>
+            <div>
+              <p className="font-display text-5xl md:text-6xl text-earth-700 dark:text-earth-500">∞</p>
+              <p className="font-mono text-xs text-stone-600 dark:text-stone-400 tracking-widest">STARS WITNESSED</p>
+            </div>
+            <div>
+              <p className="font-display text-5xl md:text-6xl text-earth-700 dark:text-earth-500">1</p>
+              <p className="font-mono text-xs text-stone-600 dark:text-stone-400 tracking-widest">LIFE CHANGED</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="relative py-20 bg-earth-800 dark:bg-stone-950 overflow-hidden">
+        <div className="absolute inset-0 dust-texture opacity-50" />
+        
+        <div className="relative max-w-3xl mx-auto px-4 text-center">
+          <h2 className="font-display text-4xl md:text-6xl text-dust-100 mb-6 tracking-wide">
+            READY TO HIT THE ROAD?
+          </h2>
+          <p className="text-xl text-dust-300 mb-8">
+            Whether you&apos;re at a crossroads in life or just need a moment of peace, 
+            the journey starts with a single step.
+          </p>
+          <Link href="/journey" className="btn-adventure inline-flex items-center gap-2 text-lg">
+            <Compass className="h-6 w-6" />
+            BEGIN YOUR JOURNEY
+          </Link>
         </div>
       </section>
     </div>
