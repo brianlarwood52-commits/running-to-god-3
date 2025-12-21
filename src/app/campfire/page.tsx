@@ -79,14 +79,22 @@ export default function CampfirePage() {
               
               <div className="space-y-4 text-dust-300 font-serif leading-relaxed">
                 <p>
-                  It was a <strong className="text-campfire-400">scorching hot day</strong>—the kind where 
-                  the heat shimmers off the road and you question every life decision that led you here. 
-                  I was about <strong className="text-dust-100">two hours out of Norseman</strong>, heading 
-                  west, when I spotted something that made me pull over immediately.
+                  I was having a break at the <strong className="text-dust-100">Balladonia Roadhouse</strong> when 
+                  this bloke came bursting through the door, absolutely buzzing with excitement. He was showing 
+                  everyone photos on his phone, going on about some guy dressed as a cat walking down the highway.
                 </p>
                 <p>
-                  A man. In a full leopard-print bodysuit. Pushing a wheelbarrow. Walking towards Sydney. 
-                  In <em>this</em> heat.
+                  &ldquo;You&apos;ve got to see this!&rdquo; he kept saying. &ldquo;There&apos;s a <em>catman</em> out there!&rdquo;
+                </p>
+                <p>
+                  I&apos;d planned to stay at the roadhouse a bit longer, but something told me I needed to see 
+                  this for myself. I got in the Jeep and headed out. It was a <strong className="text-campfire-400">scorching 
+                  hot day</strong>—the kind where the heat shimmers off the road.
+                </p>
+                <p>
+                  Sure enough, <strong className="text-dust-100">8 minutes out of Norseman</strong>, there he was. 
+                  A man in a full leopard-print bodysuit, pushing a wheelbarrow down the highway. In <em>this</em> heat. 
+                  I pulled over immediately.
                 </p>
                 <p>
                   Meet <strong className="text-dust-100">Kentaro Jin</strong>—a Japanese construction worker 
@@ -95,18 +103,20 @@ export default function CampfirePage() {
                   to everyone he meets.
                 </p>
                 <p>
-                  He sleeps in a tent by the roadside. Walks 10 hours a day. Visits schools to inspire 
-                  kids to follow their dreams. Gives high-fives to passing cars. All while dressed as a leopard 
-                  in 40-degree heat.
+                  After we chatted, I got back on the road—but I wasn&apos;t done. I jumped on the 
+                  <strong className="text-cyan-400"> UHF radio</strong> and started telling every truckie and 
+                  traveller about him. Word spreads fast on the Nullarbor, and Catman deserved all the 
+                  encouragement he could get.
                 </p>
               </div>
 
               <div className="bg-campfire-900/20 border border-campfire-800/30 rounded-lg p-4 my-6">
                 <p className="font-mono text-xs text-campfire-400 tracking-widest mb-2">📍 THE ENCOUNTER</p>
                 <p className="text-dust-300 font-serif text-sm">
-                  <strong>Location:</strong> Approximately 2 hours east of Norseman, WA<br />
+                  <strong>Tip-off:</strong> Balladonia Roadhouse (excited traveller with photos)<br />
+                  <strong>Location:</strong> 8 minutes east of Norseman, WA (GPS from photo metadata)<br />
                   <strong>Conditions:</strong> Extreme heat<br />
-                  <strong>Direction:</strong> He was heading east towards Esperance & Sydney
+                  <strong>Follow-up:</strong> Spread the word via UHF radio to other travellers
                 </p>
               </div>
 
