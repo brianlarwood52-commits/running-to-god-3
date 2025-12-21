@@ -1,462 +1,137 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Flame, Menu, X, ChevronDown, Settings } from 'lucide-react'
-import ThemeToggle from './ThemeToggle'
+import { useTheme } from '@/context/ThemeContext'
+import { 
+  Sun, 
+  Moon, 
+  Menu, 
+  X, 
+  Mountain, 
+  Compass,
+  BookOpen,
+  Heart,
+  Mail
+} from 'lucide-react'
 
-const Navigation = () => {
+const navLinks = [
+  { href: '/', label: 'Home', icon: Mountain },
+  { href: '/journey', label: 'The Journey', icon: Compass },
+  { href: '/devotions', label: 'Devotions', icon: BookOpen },
+  { href: '/about', label: 'About', icon: Heart },
+  { href: '/contact', label: 'Contact', icon: Mail },
+]
+
+export default function Navigation() {
+  const { theme, toggleTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
-  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
-  const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false)
-  const [studyLibraryDropdownOpen, setStudyLibraryDropdownOpen] = useState(false)
-  const [prayerRockDropdownOpen, setPrayerRockDropdownOpen] = useState(false)
-  const pathname = usePathname()
-  const aboutTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const resourcesTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const studyLibraryTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const prayerRockTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-
-  const handleAboutMouseEnter = () => {
-    if (aboutTimeoutRef.current) {
-      clearTimeout(aboutTimeoutRef.current)
-    }
-    setAboutDropdownOpen(true)
-  }
-
-  const handleAboutMouseLeave = () => {
-    aboutTimeoutRef.current = setTimeout(() => {
-      setAboutDropdownOpen(false)
-    }, 150)
-  }
-
-  const handleResourcesMouseEnter = () => {
-    if (resourcesTimeoutRef.current) {
-      clearTimeout(resourcesTimeoutRef.current)
-    }
-    setResourcesDropdownOpen(true)
-  }
-
-  const handleResourcesMouseLeave = () => {
-    resourcesTimeoutRef.current = setTimeout(() => {
-      setResourcesDropdownOpen(false)
-    }, 150)
-  }
-
-  const handleStudyLibraryMouseEnter = () => {
-    if (studyLibraryTimeoutRef.current) {
-      clearTimeout(studyLibraryTimeoutRef.current)
-    }
-    setStudyLibraryDropdownOpen(true)
-  }
-
-  const handleStudyLibraryMouseLeave = () => {
-    studyLibraryTimeoutRef.current = setTimeout(() => {
-      setStudyLibraryDropdownOpen(false)
-    }, 150)
-  }
-
-  const handlePrayerRockMouseEnter = () => {
-    if (prayerRockTimeoutRef.current) {
-      clearTimeout(prayerRockTimeoutRef.current)
-    }
-    setPrayerRockDropdownOpen(true)
-  }
-
-  const handlePrayerRockMouseLeave = () => {
-    prayerRockTimeoutRef.current = setTimeout(() => {
-      setPrayerRockDropdownOpen(false)
-    }, 150)
-  }
-
-  const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/contact', label: 'Contact Us' },
-  ]
-
-  const aboutItems = [
-    { path: '/my-story', label: 'My Story' },
-    { path: '/why-this-ministry', label: 'Why This Ministry' },
-    { path: '/about', label: 'About Us' },
-  ]
-
-  const resourceItems = [
-    { path: '/crisis-help', label: 'Crisis Help' },
-    { path: '/healing-pathways', label: 'Healing Pathways' },
-    { path: '/daily-fire', label: 'Daily Fire' },
-    { path: '/ministry-hub', label: 'Ministry Hub' },
-  ]
-
-  const studyLibraryItems = [
-    { path: '/mary-magdalene-apologetic', label: 'Mary Magdalene Apologetic' },
-    { path: '/bible-study', label: 'Bible Study Hub' },
-    { path: '/sda-commentary-search', label: 'SDA Commentary' },
-  ]
-
-  const prayerRockItems = [
-    { path: '/prayer-rock-story', label: 'The Story (What is it?)' },
-    { path: '/prayer-rock', label: 'The Archive (Testimonies)' },
-    { path: '/submit-prayer', label: 'Submit a Prayer' },
-  ]
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg z-50 transition-all duration-300 border-b border-white/20 dark:border-gray-700/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-dust-50/90 dark:bg-night-950/90 backdrop-blur-md border-b border-dust-200 dark:border-night-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center space-x-2 group">
-            <Flame className="h-8 w-8 text-flame-500 group-hover:text-flame-600 transition-colors duration-200" />
-            <span className="font-serif font-semibold text-xl text-gray-800 dark:text-white group-hover:text-flame-600 dark:group-hover:text-flame-400 transition-colors duration-200">
-              Shame to Flame
-            </span>
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="relative">
+              <Mountain className="h-8 w-8 text-ochre-600 dark:text-campfire-500 transition-transform group-hover:scale-110" />
+              <Compass className="h-4 w-4 text-sage-600 dark:text-starlight-400 absolute -bottom-1 -right-1" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display text-xl font-bold text-dust-900 dark:text-night-100">
+                Running to God
+              </span>
+              <span className="text-xs text-dust-600 dark:text-night-400 -mt-1 hidden sm:block">
+                A Journey Through the Outback
+              </span>
+            </div>
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-1">
-            <Link
-              href="/"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                pathname === '/'
-                  ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-              }`}
-            >
-              Home
-            </Link>
-
-            <div
-              className="relative"
-              onMouseEnter={handleAboutMouseEnter}
-              onMouseLeave={handleAboutMouseLeave}
-            >
-              <button
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-1 ${
-                  aboutItems.some(item => pathname === item.path)
-                    ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                }`}
-              >
-                <span>About</span>
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`absolute top-full left-0 pt-1 transition-all duration-200 ${aboutDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                <div className="w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 py-1">
-                  {aboutItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                        pathname === item.path
-                          ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                          : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={handleResourcesMouseEnter}
-              onMouseLeave={handleResourcesMouseLeave}
-            >
-              <button
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-1 ${
-                  resourceItems.some(item => pathname === item.path)
-                    ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                }`}
-              >
-                <span>Resources</span>
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${resourcesDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`absolute top-full left-0 pt-1 transition-all duration-200 ${resourcesDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                <div className="w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 py-1">
-                  {resourceItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                        pathname === item.path
-                          ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                          : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={handleStudyLibraryMouseEnter}
-              onMouseLeave={handleStudyLibraryMouseLeave}
-            >
-              <button
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-1 ${
-                  studyLibraryItems.some(item => pathname === item.path)
-                    ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                }`}
-              >
-                <span>Study Library</span>
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${studyLibraryDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`absolute top-full left-0 pt-1 transition-all duration-200 ${studyLibraryDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                <div className="w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 py-1">
-                  {studyLibraryItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                        pathname === item.path
-                          ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                          : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={handlePrayerRockMouseEnter}
-              onMouseLeave={handlePrayerRockMouseLeave}
-            >
-              <button
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-1 ${
-                  prayerRockItems.some(item => pathname === item.path)
-                    ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                }`}
-              >
-                <span>Prayer Rock</span>
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${prayerRockDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`absolute top-full left-0 pt-1 transition-all duration-200 ${prayerRockDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                <div className="w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 py-1">
-                  {prayerRockItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                        pathname === item.path
-                          ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                          : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {navItems.slice(1).map((item) => (
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
               <Link
-                key={item.path}
-                href={item.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                  pathname === item.path
-                    ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                }`}
+                key={link.href}
+                href={link.href}
+                className="text-dust-700 hover:text-ochre-600 dark:text-night-300 dark:hover:text-campfire-400 
+                         transition-colors font-medium flex items-center gap-1.5"
               >
-                {item.label}
+                <link.icon className="h-4 w-4" />
+                {link.label}
               </Link>
             ))}
-            <Link
-              href="/settings"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
-                pathname === '/settings'
-                  ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-              }`}
-            >
-              <Settings className="h-4 w-4" />
-              <span>Settings</span>
-            </Link>
-            <ThemeToggle />
           </div>
 
-          <div className="lg:hidden flex items-center space-x-2">
-            <ThemeToggle />
+          {/* Theme Toggle & Mobile Menu */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="relative p-2 rounded-full bg-dust-200 dark:bg-night-800 
+                       hover:bg-dust-300 dark:hover:bg-night-700 transition-all
+                       group overflow-hidden"
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            >
+              <div className="relative w-6 h-6">
+                {/* Sun Icon */}
+                <Sun 
+                  className={`h-6 w-6 text-ochre-500 absolute inset-0 transition-all duration-300
+                            ${theme === 'light' ? 'rotate-0 opacity-100' : 'rotate-90 opacity-0'}`}
+                />
+                {/* Moon Icon */}
+                <Moon 
+                  className={`h-6 w-6 text-campfire-400 absolute inset-0 transition-all duration-300
+                            ${theme === 'dark' ? 'rotate-0 opacity-100' : '-rotate-90 opacity-0'}`}
+                />
+              </div>
+              
+              {/* Tooltip */}
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs 
+                             bg-dust-900 dark:bg-night-100 text-white dark:text-night-900 
+                             px-2 py-1 rounded opacity-0 group-hover:opacity-100 
+                             transition-opacity whitespace-nowrap pointer-events-none">
+                {theme === 'light' ? 'Night Mode' : 'Day Mode'}
+              </span>
+            </button>
+
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30 transition-colors duration-200"
+              className="md:hidden p-2 rounded-lg hover:bg-dust-200 dark:hover:bg-night-800 transition-colors"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6 text-dust-700 dark:text-night-300" />
+              ) : (
+                <Menu className="h-6 w-6 text-dust-700 dark:text-night-300" />
+              )}
             </button>
           </div>
         </div>
+      </div>
 
-        {isOpen && (
-          <div className="lg:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 animate-fade-in">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link
-                href="/"
-                onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
-                  pathname === '/'
-                    ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                }`}
-              >
-                Home
-              </Link>
-
-              <div>
-                <button
-                  onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30 transition-all duration-200"
-                >
-                  <span>About</span>
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                {aboutDropdownOpen && (
-                  <div className="pl-4 space-y-1 mt-1">
-                    {aboutItems.map((item) => (
-                      <Link
-                        key={item.path}
-                        href={item.path}
-                        onClick={() => setIsOpen(false)}
-                        className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                          pathname === item.path
-                            ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                            : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <button
-                  onClick={() => setResourcesDropdownOpen(!resourcesDropdownOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30 transition-all duration-200"
-                >
-                  <span>Resources</span>
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${resourcesDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                {resourcesDropdownOpen && (
-                  <div className="pl-4 space-y-1 mt-1">
-                    {resourceItems.map((item) => (
-                      <Link
-                        key={item.path}
-                        href={item.path}
-                        onClick={() => setIsOpen(false)}
-                        className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                          pathname === item.path
-                            ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                            : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <button
-                  onClick={() => setStudyLibraryDropdownOpen(!studyLibraryDropdownOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30 transition-all duration-200"
-                >
-                  <span>Study Library</span>
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${studyLibraryDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                {studyLibraryDropdownOpen && (
-                  <div className="pl-4 space-y-1 mt-1">
-                    {studyLibraryItems.map((item) => (
-                      <Link
-                        key={item.path}
-                        href={item.path}
-                        onClick={() => setIsOpen(false)}
-                        className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                          pathname === item.path
-                            ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                            : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <button
-                  onClick={() => setPrayerRockDropdownOpen(!prayerRockDropdownOpen)}
-                  className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30 transition-all duration-200"
-                >
-                  <span>Prayer Rock</span>
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${prayerRockDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                {prayerRockDropdownOpen && (
-                  <div className="pl-4 space-y-1 mt-1">
-                    {prayerRockItems.map((item) => (
-                      <Link
-                        key={item.path}
-                        href={item.path}
-                        onClick={() => setIsOpen(false)}
-                        className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                          pathname === item.path
-                            ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                            : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {navItems.slice(1).map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
-                    pathname === item.path
-                      ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-
-              <Link
-                href="/settings"
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
-                  pathname === '/settings'
-                    ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
-                }`}
-              >
-                <Settings className="h-5 w-5" />
-                <span>Settings</span>
-              </Link>
-            </div>
-          </div>
-        )}
+      {/* Mobile Menu */}
+      <div 
+        className={`md:hidden transition-all duration-300 overflow-hidden
+                   ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <div className="px-4 py-4 space-y-2 bg-dust-100 dark:bg-night-900 border-t border-dust-200 dark:border-night-800">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg
+                       text-dust-700 hover:text-ochre-600 hover:bg-dust-200
+                       dark:text-night-300 dark:hover:text-campfire-400 dark:hover:bg-night-800
+                       transition-colors font-medium"
+            >
+              <link.icon className="h-5 w-5" />
+              {link.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </nav>
   )
 }
-
-export default Navigation

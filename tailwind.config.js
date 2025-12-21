@@ -1,58 +1,107 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
+module.exports = {
   darkMode: 'class',
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   theme: {
     extend: {
-      fontFamily: {
-        'serif': ['Crimson Text', 'serif'],
-        'sans': ['Inter', 'sans-serif'],
-      },
       colors: {
-        flame: {
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C',
-          500: '#F97316',
-          600: '#EA580C',
-          700: '#C2410C',
-          800: '#9A3412',
-          900: '#7C2D12',
+        // Daytime Outback - Light Mode
+        ochre: {
+          50: '#fdf8f3',
+          100: '#f9efe3',
+          200: '#f2dcc4',
+          300: '#e8c49a',
+          400: '#dca76e',
+          500: '#d18f4a',
+          600: '#c47a3d',
+          700: '#a36134',
+          800: '#834e30',
+          900: '#6a4129',
+          950: '#392014',
         },
-        sky: {
-          50: '#F0F9FF',
-          100: '#E0F2FE',
-          200: '#BAE6FD',
-          300: '#7DD3FC',
-          400: '#38BDF8',
-          500: '#0EA5E9',
-          600: '#0284C7',
-          700: '#0369A1',
-          800: '#075985',
-          900: '#0C4A6E',
+        dust: {
+          50: '#f9f7f5',
+          100: '#f0ebe5',
+          200: '#e0d5c9',
+          300: '#ccb9a6',
+          400: '#b69881',
+          500: '#a78068',
+          600: '#9a705c',
+          700: '#805b4d',
+          800: '#694c43',
+          900: '#564039',
+          950: '#2e201d',
         },
         sage: {
-          50: '#F6F7F6',
-          100: '#E8EBE8',
-          200: '#D1D7D1',
-          300: '#B0BCB0',
-          400: '#8A9A8A',
-          500: '#6B7B6B',
-          600: '#546354',
-          700: '#445144',
-          800: '#384238',
-          900: '#2F362F',
-        }
+          50: '#f4f7f4',
+          100: '#e3ebe3',
+          200: '#c7d7c8',
+          300: '#9fb9a2',
+          400: '#729578',
+          500: '#517859',
+          600: '#3e5f45',
+          700: '#334d39',
+          800: '#2b3e30',
+          900: '#243428',
+          950: '#121c15',
+        },
+        // Starlit Night - Dark Mode
+        night: {
+          50: '#f0f4f8',
+          100: '#d9e2ec',
+          200: '#bcccdc',
+          300: '#9fb3c8',
+          400: '#829ab1',
+          500: '#627d98',
+          600: '#486581',
+          700: '#334e68',
+          800: '#243b53',
+          900: '#102a43',
+          950: '#0a1929',
+        },
+        campfire: {
+          50: '#fff8ed',
+          100: '#ffefd4',
+          200: '#ffdba8',
+          300: '#ffc170',
+          400: '#ff9d37',
+          500: '#ff8010',
+          600: '#f06406',
+          700: '#c74a07',
+          800: '#9e3a0e',
+          900: '#7f320f',
+          950: '#451705',
+        },
+        starlight: {
+          50: '#f5f7fa',
+          100: '#eaeef4',
+          200: '#d0dbe7',
+          300: '#a7bdd3',
+          400: '#7899ba',
+          500: '#577da2',
+          600: '#446487',
+          700: '#38516e',
+          800: '#31455c',
+          900: '#2d3c4e',
+          950: '#1e2834',
+        },
+      },
+      fontFamily: {
+        display: ['Georgia', 'Cambria', 'serif'],
+        body: ['system-ui', '-apple-system', 'sans-serif'],
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'hero-pattern': "url('/images/dust-texture.png')",
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
-        'float': 'float 3s ease-in-out infinite',
+        'twinkle': 'twinkle 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -60,18 +109,15 @@ export default {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        }
+        twinkle: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.3' },
+        },
       },
-      backdropBlur: {
-        xs: '2px',
-      }
     },
   },
   plugins: [],
-};
+}
