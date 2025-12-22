@@ -7,14 +7,20 @@ const STATIC_ASSETS = [
   '/devotions',
   '/about',
   '/contact',
-  '/images/running-to-god-logo-small.png',
+  '/manifest.json',
+  '/images/icon-192.svg',
+  '/images/icon-512.svg',
 ];
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
+      return cache.addAll(STATIC_ASSETS).catch((error) => {
+        console.error('Failed to cache some assets:', error);
+        // Continue even if some assets fail to cache
+        return Promise.resolve();
+      });
     })
   );
   self.skipWaiting();

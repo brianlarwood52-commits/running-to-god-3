@@ -3,6 +3,7 @@ import { ThemeProvider } from '@/context/ThemeContext'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister'
+import InstallPrompt from '@/components/InstallPrompt'
 import ParallaxStars from '@/components/ParallaxStars'
 import './globals.css'
 
@@ -21,7 +22,6 @@ export const metadata: Metadata = {
     title: 'Running to God | A Journey Across the Australian Outback',
     description: '6,859 kilometres of dust, stars, and finding the way back to what matters.',
     type: 'website',
-    images: ['/images/running-to-god-logo-small.png'],
   },
 }
 
@@ -42,9 +42,12 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="apple-touch-icon" href="/images/running-to-god-logo-small.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/images/icon-192.svg" type="image/svg+xml" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="application-name" content="Running to God" />
       </head>
       <body className="min-h-screen flex flex-col antialiased bg-stone-950 text-stone-200">
         <ThemeProvider>
@@ -55,6 +58,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ServiceWorkerRegister />
+          <InstallPrompt />
         </ThemeProvider>
       </body>
     </html>

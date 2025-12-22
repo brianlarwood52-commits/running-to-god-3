@@ -5,6 +5,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Reduce memory usage during build
+  swcMinify: true,
 }
 
 module.exports = nextConfig

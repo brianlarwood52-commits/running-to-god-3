@@ -10,55 +10,28 @@ export default function HomePage() {
     <div className="text-stone-200 overflow-hidden">
       
       {/* ===== OPENING SHOT - Full Screen Hero ===== */}
-      <section className="relative h-screen flex items-center justify-center cinematic-bars vignette film-grain">
-        {/* Background - simulated outback sunset */}
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-700 via-earth-700 to-stone-950" />
-        
-        {/* Horizon line */}
-        <div className="absolute top-[35%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-earth-500/50 to-transparent" />
-        
-        {/* Sun */}
-        <div className="absolute top-[25%] left-1/2 -translate-x-1/2">
-          <div className="w-32 h-32 rounded-full bg-gradient-to-b from-yellow-200 to-orange-500 blur-md opacity-70" />
-        </div>
-
-        {/* Dust particles */}
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="dust-particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              bottom: `${Math.random() * 50}%`,
-              animationDelay: `${Math.random() * 15}s`,
-            }}
-          />
-        ))}
-
-        {/* Road vanishing to horizon */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md">
-          <svg viewBox="0 0 400 500" className="w-full opacity-80">
-            {/* Road surface */}
-            <path d="M120,500 L190,150 L210,150 L280,500 Z" fill="#3d3d3d" />
-            {/* Road edges - worn */}
-            <path d="M120,500 L190,150" stroke="#D4A574" strokeWidth="2" fill="none" opacity="0.4" />
-            <path d="M280,500 L210,150" stroke="#D4A574" strokeWidth="2" fill="none" opacity="0.4" />
-            {/* Center dashes */}
-            <g className="road-dash" stroke="#f5f0e6" strokeWidth="4" fill="none">
-              <line x1="200" y1="500" x2="200" y2="150" />
-            </g>
-          </svg>
-        </div>
+      <section 
+        className="relative h-screen flex items-start justify-center pt-12 md:pt-20 vignette"
+        style={{
+          backgroundImage: 'url(/images/road-winding3.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/20" />
 
         {/* Content */}
-        <div className="relative z-20 text-center px-4 max-w-5xl">
+        <div className="relative z-20 text-center px-4 max-w-5xl mt-4 md:mt-6">
           {/* Logo */}
-          <div className="mb-8 animate-fade-in">
+          <div className="mb-8">
             <Logo size="hero" />
           </div>
 
           {/* Location tag */}
-          <p className="location-tag mb-4 animate-fade-in">
+          <p className="location-tag mb-4">
             Swan View → Nullarbor → Port Lincoln → Esperance → Home
           </p>
           
@@ -88,7 +61,7 @@ export default function HomePage() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20">
-          <ChevronDown className="h-8 w-8 text-dust-500 animate-bounce" />
+          <ChevronDown className="h-8 w-8 text-dust-500" />
         </div>
 
         {/* Credits-style location */}
@@ -105,7 +78,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== THE PREMISE - Documentary intro ===== */}
-      <section className="relative py-32 bg-stone-950/80 backdrop-blur-sm">
+      <section className="relative py-32 bg-stone-950/60">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <blockquote className="quote-overlay text-dust-200 mb-8">
             &ldquo;Sometimes you have to drive 2,500 kilometres through nothing to find everything.&rdquo;
@@ -127,7 +100,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== CHAPTER CARDS - Like documentary sections ===== */}
-      <section className="relative py-20 bg-gradient-to-b from-stone-950/70 via-stone-900/60 to-stone-950/70 backdrop-blur-sm">
+      <section className="relative py-20 bg-gradient-to-b from-stone-950/60 via-stone-900/50 to-stone-950/60">
         <div className="max-w-6xl mx-auto px-4">
           
           {/* Section title */}
@@ -175,21 +148,8 @@ export default function HomePage() {
               <div className="aspect-photo bg-gradient-to-br from-campfire-600/40 to-stone-900 rounded overflow-hidden worn-photo">
                 {/* Campfire glow effect */}
                 <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-                  <div className="w-16 h-16 bg-campfire-500 rounded-full blur-2xl fire-glow opacity-60" />
+                  <div className="w-16 h-16 bg-campfire-500 rounded-full blur-2xl opacity-60" />
                 </div>
-                
-                {/* Stars */}
-                {[...Array(20)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-1 h-1 bg-white rounded-full star"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 50}%`,
-                      animationDelay: `${Math.random() * 3}s`,
-                    }}
-                  />
-                ))}
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
                   <p className="font-mono text-xs text-campfire-400 tracking-widest mb-2">CHAPTER 02</p>
@@ -241,9 +201,9 @@ export default function HomePage() {
       </section>
 
       {/* ===== FEATURED SCENE - The Nullarbor ===== */}
-      <section className="relative h-screen flex items-center vignette film-grain">
+      <section className="relative h-screen flex items-center vignette">
         {/* Background - semi-transparent to show stars */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dust-400/90 via-earth-600/85 to-stone-900/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dust-400/70 via-earth-600/65 to-stone-900/60" />
         
         {/* Flat horizon */}
         <div className="absolute top-[40%] left-0 right-0 h-px bg-earth-800" />
@@ -287,39 +247,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Dust particles */}
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={i}
-            className="dust-particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              bottom: `${Math.random() * 40}%`,
-              animationDelay: `${Math.random() * 15}s`,
-            }}
-          />
-        ))}
       </section>
 
       {/* ===== SCRIPTURE SCENE ===== */}
-      <section className="relative py-32 bg-night-950/60 overflow-hidden backdrop-blur-sm">
-        {/* Stars */}
-        <div className="absolute inset-0">
-          {[...Array(100)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute bg-white rounded-full star"
-              style={{
-                width: `${Math.random() * 3 + 1}px`,
-                height: `${Math.random() * 3 + 1}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            />
-          ))}
-        </div>
-
+      <section className="relative py-32 bg-night-950/40 overflow-hidden">
         {/* Milky way band */}
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent rotate-12 opacity-30" />
 
@@ -340,7 +271,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== JESUS CHARACTER SECTION ===== */}
-      <section className="relative py-32 bg-gradient-to-b from-night-950/50 via-stone-950/60 to-stone-900/70 backdrop-blur-sm">
+      <section className="relative py-32 bg-gradient-to-b from-night-950/40 via-stone-950/50 to-stone-900/60">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-16">
             <p className="font-mono text-xs text-cyan-500 tracking-widest mb-4">THE SON OF GOD</p>
@@ -397,7 +328,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== FINAL CTA - Documentary end card ===== */}
-      <section className="relative py-32 bg-stone-950/80 backdrop-blur-sm text-center">
+      <section className="relative py-32 bg-stone-950/60 text-center">
         <div className="max-w-3xl mx-auto px-4">
           <p className="font-mono text-xs text-earth-500 tracking-widest mb-6">
             YOUR JOURNEY AWAITS

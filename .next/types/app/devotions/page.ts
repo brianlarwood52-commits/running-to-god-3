@@ -1,4 +1,4 @@
-// File: /workspace/src/app/devotions/page.tsx
+// File: C:\Users\miami\Downloads\running-to-god\new-mainxx\src\app\devotions\page.tsx
 import * as entry from '../../../../src/app/devotions/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

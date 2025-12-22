@@ -9,8 +9,18 @@ export default function AboutPage() {
     <div className="min-h-screen bg-stone-950">
       
       {/* ===== HERO ===== */}
-      <section className="relative h-[60vh] flex items-end vignette film-grain">
-        <div className="absolute inset-0 bg-gradient-to-b from-earth-700 via-earth-800 to-stone-950" />
+      <section 
+        className="relative h-[60vh] flex items-end vignette film-grain"
+        style={{
+          backgroundImage: 'url(/images/Great-outdoors.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/20" />
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
           <p className="location-tag mb-4">A JOURNEY TO JESUS</p>

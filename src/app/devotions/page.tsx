@@ -39,28 +39,26 @@ export default function DevotionsPage() {
     <div className="min-h-screen bg-stone-950">
       
       {/* ===== HERO ===== */}
-      <section className="relative h-[60vh] flex items-end vignette film-grain">
-        {/* Paper texture background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dust-200 via-dust-100 to-stone-950" />
-        
-        {/* Journal lines */}
-        <div className="absolute inset-0 opacity-10">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute left-0 right-0 h-px bg-stone-600"
-              style={{ top: `${5 + i * 5}%` }}
-            />
-          ))}
-        </div>
+      <section 
+        className="relative h-[70vh] flex items-end vignette film-grain"
+        style={{
+          backgroundImage: 'url(/images/thinking-dreaming.png)',
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/20" />
         
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
-          <p className="font-mono text-xs text-earth-700 tracking-widest mb-4">REFLECTIONS FROM THE ROAD</p>
-          <h1 className="font-cinematic text-6xl md:text-8xl text-stone-800 tracking-wider title-card mb-4">
+          <p className="location-tag mb-4">REFLECTIONS FROM THE ROAD</p>
+          <h1 className="font-cinematic text-6xl md:text-8xl text-dust-100 tracking-wider title-card mb-4">
             THE JOURNAL
           </h1>
-          <p className="text-xl text-stone-600 font-serif max-w-2xl">
+          <p className="text-xl text-dust-300 font-serif max-w-2xl">
             Pages from a worn notebook. Thoughts scribbled by torchlight. 
             Prayers whispered under endless skies.
           </p>

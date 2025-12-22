@@ -1,4 +1,4 @@
-// File: /workspace/src/app/campfire/page.tsx
+// File: C:\Users\miami\Downloads\running-to-god\new-mainxx\src\app\campfire\page.tsx
 import * as entry from '../../../../src/app/campfire/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

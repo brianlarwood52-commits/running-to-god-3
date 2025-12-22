@@ -173,7 +173,7 @@
 /* ===== ROAD LINE ANIMATION ===== */
 @keyframes roadDash {
   0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: -50; }
+  100% { stroke-dashoffset: -35; }
 }
 
 .road-dash {
@@ -184,25 +184,54 @@
 /* ===== CAMPFIRE FLICKER ===== */
 @keyframes fireGlow {
   0%, 100% { 
-    box-shadow: 0 0 20px #ff6b35, 0 0 40px #ff6b35, 0 0 60px rgba(255,107,53,0.5);
     opacity: 1;
   }
-  25% { 
-    box-shadow: 0 0 25px #ff8c00, 0 0 50px #ff6b35, 0 0 70px rgba(255,107,53,0.6);
-    opacity: 0.95;
-  }
   50% { 
-    box-shadow: 0 0 15px #ff6b35, 0 0 35px #ff6b35, 0 0 55px rgba(255,107,53,0.4);
-    opacity: 0.9;
+    opacity: 0.85;
   }
-  75% { 
-    box-shadow: 0 0 22px #ff8c00, 0 0 45px #ff6b35, 0 0 65px rgba(255,107,53,0.55);
-    opacity: 0.97;
+}
+
+@keyframes fireFlicker {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.85;
+    transform: scale(1.1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(0.9);
+  }
+  75% {
+    opacity: 0.88;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fireDance {
+  0%, 100% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  33% {
+    transform: translateX(-3px) translateY(-2px) scale(1.05);
+  }
+  66% {
+    transform: translateX(3px) translateY(2px) scale(0.95);
   }
 }
 
 .fire-glow {
-  animation: fireGlow 0.3s ease-in-out infinite;
+  animation: fireGlow 1.2s ease-in-out infinite;
+}
+
+.fire-flicker {
+  animation: fireFlicker 0.25s ease-in-out infinite;
+}
+
+.fire-dance {
+  animation: fireDance 0.6s ease-in-out infinite;
 }
 
 /* ===== STAR TWINKLE ===== */

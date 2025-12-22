@@ -1,38 +1,88 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Flame, Quote, Users, ArrowRight, ExternalLink } from 'lucide-react'
 
 export default function CampfirePage() {
+  const heroRef = useRef<HTMLElement>(null)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Initial call
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="min-h-screen">
       
       {/* ===== HERO ===== */}
-      <section className="relative h-[60vh] flex items-end vignette film-grain">
-        <div className="absolute inset-0 bg-gradient-to-b from-night-900 via-campfire-900/30 to-stone-950" />
+      <section ref={heroRef} className="relative h-[70vh] flex items-end vignette film-grain overflow-hidden">
+        {/* Sky layer - moves slowest (furthest back) */}
+        <div 
+          className="absolute inset-0 bg-center bg-cover bg-no-repeat will-change-transform"
+          style={{
+            backgroundImage: 'url(/images/campfire-sky.png)',
+            backgroundSize: 'cover',
+            transform: `translateY(${scrollY * 0.2}px)`,
+            transition: 'transform 0.1s ease-out',
+            zIndex: 1,
+          }}
+        />
         
-        {/* Stars */}
-        <div className="absolute inset-0">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute bg-white rounded-full star"
-              style={{
-                width: `${Math.random() * 2 + 1}px`,
-                height: `${Math.random() * 2 + 1}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 60}%`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            />
-          ))}
+        {/* Foreground layer - moves faster (closer) */}
+        <div 
+          className="absolute inset-0 bg-center bg-cover bg-no-repeat will-change-transform"
+          style={{
+            backgroundImage: 'url(/images/campfire-foreground.png)',
+            backgroundSize: 'cover',
+            transform: `translateY(${scrollY * 0.6}px)`,
+            transition: 'transform 0.1s ease-out',
+            zIndex: 2,
+          }}
+        />
+        
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 z-3" style={{ zIndex: 3 }} />
+        
+        {/* Pulsating fire glow - positioned over the flames in the photo, moves with foreground parallax */}
+        <div 
+          className="absolute bottom-[15%] left-[40%] -translate-x-1/2 will-change-transform" 
+          style={{ 
+            zIndex: 4,
+            transform: `translateY(${scrollY * 0.6}px)`,
+            transition: 'transform 0.1s ease-out',
+          }}
+        >
+          <div className="w-36 h-20 bg-campfire-500/40 blur-3xl fire-glow" />
         </div>
-
-        {/* Campfire glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
-          <div className="w-64 h-32 bg-campfire-500/30 blur-3xl fire-glow" />
+        
+        {/* Additional fire glow layers for more realistic effect */}
+        <div 
+          className="absolute bottom-[15%] left-[40%] -translate-x-1/2 will-change-transform" 
+          style={{ 
+            zIndex: 4,
+            transform: `translateY(${scrollY * 0.6}px)`,
+            transition: 'transform 0.1s ease-out',
+          }}
+        >
+          <div className="w-28 h-16 bg-orange-500/30 blur-2xl fire-glow" style={{ animationDelay: '0.15s' }} />
+        </div>
+        <div 
+          className="absolute bottom-[15%] left-[40%] -translate-x-1/2 will-change-transform" 
+          style={{ 
+            zIndex: 4,
+            transform: `translateY(${scrollY * 0.6}px)`,
+            transition: 'transform 0.1s ease-out',
+          }}
+        >
+          <div className="w-20 h-12 bg-yellow-500/20 blur-xl fire-glow" style={{ animationDelay: '0.3s' }} />
         </div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">

@@ -10,8 +10,18 @@ export default function JourneyPage() {
     <div className="min-h-screen">
       
       {/* ===== HERO ===== */}
-      <section className="relative h-[70vh] flex items-end vignette film-grain">
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-600 via-earth-700 to-stone-950" />
+      <section 
+        className="relative h-[70vh] flex items-end vignette film-grain"
+        style={{
+          backgroundImage: 'url(/images/driving.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/20" />
         <div className="absolute top-[40%] left-0 right-0 h-px bg-earth-500/30" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-[60%] bg-gradient-to-t from-stone-800 to-transparent opacity-50" />
         
