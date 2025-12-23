@@ -97,7 +97,7 @@ export default function CampfirePage() {
       </section>
 
       {/* ===== QUESTIONS ABOUT JESUS ===== */}
-      <section className="py-14 bg-stone-950/70 backdrop-blur-sm">
+      <section id="questions-about-jesus" className="py-14 bg-stone-950/70 backdrop-blur-sm">
         <div className="max-w-5xl mx-auto px-6 space-y-6">
           <div className="flex items-center gap-3">
             <Users className="h-6 w-6 text-campfire-400" />

@@ -50,6 +50,9 @@ export default function Footer() {
               <Link href="/campfire" className="block font-mono text-xs text-dust-500 hover:text-dust-200 tracking-wider transition-colors">
                 CAMPFIRE STORIES
               </Link>
+              <Link href="/campfire#questions-about-jesus" className="block font-mono text-xs text-dust-500 hover:text-dust-200 tracking-wider transition-colors">
+                QUESTIONS ABOUT JESUS?
+              </Link>
               <Link href="/devotions" className="block font-mono text-xs text-dust-500 hover:text-dust-200 tracking-wider transition-colors">
                 JOURNAL / DEVOTIONS
               </Link>
