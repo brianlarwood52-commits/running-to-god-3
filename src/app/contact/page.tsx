@@ -1,13 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Mail, Send, CheckCircle, MapPin } from 'lucide-react'
+import { Mail, Send, CheckCircle, MapPin, ShieldCheck } from 'lucide-react'
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    topic: 'general',
+    subject: '',
     message: '',
   })
 
@@ -37,7 +39,7 @@ export default function ContactPage() {
 
       {/* ===== CONTACT FORM ===== */}
       <section className="py-16 bg-stone-950">
-        <div className="max-w-2xl mx-auto px-6">
+        <div className="max-w-3xl mx-auto px-6">
           
           {submitted ? (
             <div className="text-center py-16">
@@ -51,38 +53,80 @@ export default function ContactPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Privacy banner */}
+              <div className="bg-stone-900/70 border border-stone-800 rounded-lg p-4 flex items-start gap-3">
+                <ShieldCheck className="h-5 w-5 text-cyan-400 mt-0.5" />
+                <div>
+                  <p className="font-mono text-[11px] text-cyan-400 tracking-widest">PRIVACY BY DEFAULT</p>
+                  <p className="text-sm text-dust-300 font-serif">
+                    You don&apos;t need to provide your name or email. Share contact details only if you&apos;d like a reply.
+                  </p>
+                </div>
+              </div>
               
-              <div>
-                <label className="block font-mono text-xs text-dust-500 tracking-widest mb-2">
-                  YOUR NAME
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-4 bg-stone-900 border border-stone-700 rounded
-                           text-dust-200 font-serif
-                           focus:ring-2 focus:ring-earth-500 focus:border-transparent 
-                           transition-all outline-none"
-                  placeholder="John Smith"
-                />
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-mono text-xs text-dust-500 tracking-widest mb-2">
+                    YOUR NAME (OPTIONAL)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-4 bg-stone-900 border border-stone-700 rounded
+                             text-dust-200 font-serif
+                             focus:ring-2 focus:ring-earth-500 focus:border-transparent 
+                             transition-all outline-none"
+                    placeholder="How would you like us to address you?"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs text-dust-500 tracking-widest mb-2">
+                    EMAIL ADDRESS (OPTIONAL)
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-4 bg-stone-900 border border-stone-700 rounded
+                             text-dust-200 font-serif
+                             focus:ring-2 focus:ring-earth-500 focus:border-transparent 
+                             transition-all outline-none"
+                    placeholder="your.email@example.com (only if you want a reply)"
+                  />
+                </div>
               </div>
 
               <div>
                 <label className="block font-mono text-xs text-dust-500 tracking-widest mb-2">
-                  EMAIL ADDRESS
+                  HOW CAN WE HELP?
+                </label>
+                <select
+                  value={formData.topic}
+                  onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                  className="w-full px-4 py-4 bg-stone-900 border border-stone-700 rounded text-dust-200 font-serif focus:ring-2 focus:ring-earth-500 focus:border-transparent transition-all outline-none"
+                >
+                  <option value="general">General Questions</option>
+                  <option value="prayer">Prayer Request</option>
+                  <option value="study">Bible Study Support</option>
+                  <option value="testimony">Share Your Testimony</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block font-mono text-xs text-dust-500 tracking-widest mb-2">
+                  SUBJECT (OPTIONAL)
                 </label>
                 <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  type="text"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full px-4 py-4 bg-stone-900 border border-stone-700 rounded
                            text-dust-200 font-serif
                            focus:ring-2 focus:ring-earth-500 focus:border-transparent 
                            transition-all outline-none"
-                  placeholder="john@example.com"
+                  placeholder="Brief description of your message"
                 />
               </div>
 
@@ -99,7 +143,7 @@ export default function ContactPage() {
                            text-dust-200 font-serif resize-none
                            focus:ring-2 focus:ring-earth-500 focus:border-transparent 
                            transition-all outline-none"
-                  placeholder="Share your story, ask a question, or just say hello..."
+                  placeholder="Share your heart with us. We're here to listen and support you."
                 />
               </div>
 
