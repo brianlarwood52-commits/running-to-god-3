@@ -10,8 +10,8 @@ const navLinks = [
   { href: '/journey', label: 'THE ROAD' },
   { href: '/campfire', label: 'CAMPFIRE' },
   { href: '/devotions', label: 'JOURNAL' },
-  { href: '/about', label: 'THE STORY' },
-  { href: '/campfire#questions-about-jesus', label: 'QUESTIONS ABOUT JESUS?' },
+  { href: '/about', label: 'WHY THE ROAD' },
+  { href: '/questions-about-jesus', label: 'QUESTIONS ABOUT JESUS?' },
   { href: '/contact', label: 'CONTACT' },
 ]
 
