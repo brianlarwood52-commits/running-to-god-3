@@ -52,16 +52,24 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {/* Road dropdown */}
-            <div className="relative group">
+            {/* HOME first */}
+            <Link
+              href="/"
+              className="font-mono text-xs tracking-widest text-dust-400 hover:text-dust-100 transition-colors"
+            >
+              HOME
+            </Link>
+
+            {/* Road dropdown (THE ROAD + WHY THE ROAD) */}
+            <div className="relative group/road">
               <Link
                 href="/journey"
                 className="font-mono text-xs tracking-widest text-dust-400 hover:text-dust-100 transition-colors flex items-center gap-2"
               >
                 THE ROAD
-                <ChevronDown className="h-3 w-3 text-dust-500 group-hover:text-dust-200 transition-colors" />
+                <ChevronDown className="h-3 w-3 text-dust-500 group-hover/road:text-dust-200 transition-colors" />
               </Link>
-              <div className="absolute left-0 mt-2 bg-stone-900/95 border border-stone-800 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity">
+              <div className="absolute left-0 top-full bg-stone-900/95 border border-stone-800 rounded-lg shadow-lg opacity-0 translate-y-1 group-hover/road:opacity-100 group-hover/road:translate-y-0 pointer-events-none group-hover/road:pointer-events-auto transition-all">
                 <div className="py-2 px-3 flex flex-col min-w-[180px]">
                   {roadLinks.map((sub) => (
                     <Link
@@ -76,15 +84,18 @@ export default function Navigation() {
               </div>
             </div>
 
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-mono text-xs tracking-widest text-dust-400 hover:text-dust-100 transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {/* Remaining links (excluding HOME) */}
+            {navLinks
+              .filter((link) => link.href !== '/')
+              .map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="font-mono text-xs tracking-widest text-dust-400 hover:text-dust-100 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,21 +119,25 @@ export default function Navigation() {
           {/* Logo in mobile menu */}
           <Logo size="lg" showText />
           
-          {navLinks.map((link, index) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="font-cinematic text-3xl text-dust-300 hover:text-cyan-400 tracking-widest transition-colors"
-              style={{ 
-                animationDelay: `${index * 0.1}s`,
-                animation: isOpen ? 'fadeInUp 0.5s ease-out forwards' : 'none'
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          {/* Road sublinks for mobile */}
+          {/* Mobile: HOME first */}
+          {navLinks
+            .filter((link) => link.href === '/')
+            .map((link, index) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="font-cinematic text-3xl text-dust-300 hover:text-cyan-400 tracking-widest transition-colors"
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  animation: isOpen ? 'fadeInUp 0.5s ease-out forwards' : 'none'
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+          {/* Mobile: THE ROAD + WHY THE ROAD */}
           {roadLinks.map((sub, index) => (
             <Link
               key={sub.href}
@@ -130,11 +145,29 @@ export default function Navigation() {
               onClick={() => setIsOpen(false)}
               className="font-cinematic text-2xl text-dust-400 hover:text-cyan-300 tracking-widest transition-colors"
               style={{ 
-                animationDelay: `${(navLinks.length + index) * 0.1}s`,
+                animationDelay: `${(1 + index) * 0.1}s`,
                 animation: isOpen ? 'fadeInUp 0.5s ease-out forwards' : 'none'
               }}
             >
               {sub.label}
+            </Link>
+          ))}
+
+          {/* Mobile: remaining links (excluding HOME) */}
+          {navLinks
+            .filter((link) => link.href !== '/')
+            .map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="font-cinematic text-3xl text-dust-300 hover:text-cyan-400 tracking-widest transition-colors"
+              style={{ 
+                animationDelay: `${(1 + roadLinks.length + index) * 0.1}s`,
+                animation: isOpen ? 'fadeInUp 0.5s ease-out forwards' : 'none'
+              }}
+            >
+              {link.label}
             </Link>
           ))}
         </div>
