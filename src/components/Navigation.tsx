@@ -3,16 +3,19 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Logo from './Logo'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 
 const navLinks = [
   { href: '/', label: 'HOME' },
-  { href: '/journey', label: 'THE ROAD' },
   { href: '/campfire', label: 'CAMPFIRE' },
   { href: '/devotions', label: 'JOURNAL' },
-  { href: '/about', label: 'WHY THE ROAD' },
   { href: '/questions-about-jesus', label: 'QUESTIONS ABOUT JESUS?' },
   { href: '/contact', label: 'CONTACT' },
+]
+
+const roadLinks = [
+  { href: '/journey', label: 'THE ROAD' },
+  { href: '/about', label: 'WHY THE ROAD' },
 ]
 
 export default function Navigation() {
@@ -49,6 +52,30 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
+            {/* Road dropdown */}
+            <div className="relative group">
+              <Link
+                href="/journey"
+                className="font-mono text-xs tracking-widest text-dust-400 hover:text-dust-100 transition-colors flex items-center gap-2"
+              >
+                THE ROAD
+                <ChevronDown className="h-3 w-3 text-dust-500 group-hover:text-dust-200 transition-colors" />
+              </Link>
+              <div className="absolute left-0 mt-2 bg-stone-900/95 border border-stone-800 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity">
+                <div className="py-2 px-3 flex flex-col min-w-[180px]">
+                  {roadLinks.map((sub) => (
+                    <Link
+                      key={sub.href}
+                      href={sub.href}
+                      className="font-mono text-xs tracking-widest text-dust-400 hover:text-dust-100 transition-colors py-1"
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -93,6 +120,21 @@ export default function Navigation() {
               }}
             >
               {link.label}
+            </Link>
+          ))}
+          {/* Road sublinks for mobile */}
+          {roadLinks.map((sub, index) => (
+            <Link
+              key={sub.href}
+              href={sub.href}
+              onClick={() => setIsOpen(false)}
+              className="font-cinematic text-2xl text-dust-400 hover:text-cyan-300 tracking-widest transition-colors"
+              style={{ 
+                animationDelay: `${(navLinks.length + index) * 0.1}s`,
+                animation: isOpen ? 'fadeInUp 0.5s ease-out forwards' : 'none'
+              }}
+            >
+              {sub.label}
             </Link>
           ))}
         </div>

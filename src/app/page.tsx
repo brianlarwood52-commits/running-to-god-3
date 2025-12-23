@@ -286,40 +286,46 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {/* Compassion */}
-            <div className="text-center p-8 border border-stone-800 rounded-lg bg-stone-950/50">
+            <Link href="/jesus/compassion" className="group text-center p-8 border border-stone-800 rounded-lg bg-stone-950/50 hover:border-cyan-600 transition-colors">
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-cyan-500/10 flex items-center justify-center">
                 <span className="font-cinematic text-3xl text-cyan-400">♥</span>
               </div>
-              <h3 className="font-cinematic text-2xl text-dust-100 tracking-wider mb-4">COMPASSION</h3>
+              <h3 className="font-cinematic text-2xl text-dust-100 tracking-wider mb-4 group-hover:text-cyan-300 transition-colors">
+                COMPASSION
+              </h3>
               <p className="text-dust-400 font-serif text-sm leading-relaxed">
                 &ldquo;When he saw the crowds, he had compassion on them, because they were harassed and helpless.&rdquo;
               </p>
               <p className="font-mono text-xs text-dust-600 mt-4">MATTHEW 9:36</p>
-            </div>
+            </Link>
 
             {/* Grace */}
-            <div className="text-center p-8 border border-stone-800 rounded-lg bg-stone-950/50">
+            <Link href="/jesus/grace" className="group text-center p-8 border border-stone-800 rounded-lg bg-stone-950/50 hover:border-cyan-600 transition-colors">
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-cyan-500/10 flex items-center justify-center">
                 <span className="font-cinematic text-3xl text-cyan-400">✝</span>
               </div>
-              <h3 className="font-cinematic text-2xl text-dust-100 tracking-wider mb-4">GRACE</h3>
+              <h3 className="font-cinematic text-2xl text-dust-100 tracking-wider mb-4 group-hover:text-cyan-300 transition-colors">
+                GRACE
+              </h3>
               <p className="text-dust-400 font-serif text-sm leading-relaxed">
                 &ldquo;For by grace you have been saved through faith. And this is not your own doing; it is the gift of God.&rdquo;
               </p>
               <p className="font-mono text-xs text-dust-600 mt-4">EPHESIANS 2:8</p>
-            </div>
+            </Link>
 
             {/* Truth */}
-            <div className="text-center p-8 border border-stone-800 rounded-lg bg-stone-950/50">
+            <Link href="/jesus/truth" className="group text-center p-8 border border-stone-800 rounded-lg bg-stone-950/50 hover:border-cyan-600 transition-colors">
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-cyan-500/10 flex items-center justify-center">
                 <span className="font-cinematic text-3xl text-cyan-400">☀</span>
               </div>
-              <h3 className="font-cinematic text-2xl text-dust-100 tracking-wider mb-4">TRUTH</h3>
+              <h3 className="font-cinematic text-2xl text-dust-100 tracking-wider mb-4 group-hover:text-cyan-300 transition-colors">
+                TRUTH
+              </h3>
               <p className="text-dust-400 font-serif text-sm leading-relaxed">
                 &ldquo;Then you will know the truth, and the truth will set you free.&rdquo;
               </p>
               <p className="font-mono text-xs text-dust-600 mt-4">JOHN 8:32</p>
-            </div>
+            </Link>
           </div>
 
           <div className="text-center">
