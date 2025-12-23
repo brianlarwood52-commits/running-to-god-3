@@ -44,6 +44,10 @@ export default function HomePage() {
           <p className="font-journal text-3xl sm:text-4xl md:text-5xl text-dust-300 mb-8">
             6,859 kilometres of dust, stars, and finding my way back
           </p>
+          <p className="font-serif text-lg md:text-xl text-dust-200/90 mb-10 max-w-3xl mx-auto">
+            This road is about meeting <span className="text-cyan-300 font-semibold not-italic">Jesus—God with us</span>:
+            the One who knows the Father, carries our failures, and invites us into real life.
+          </p>
 
           {/* Play button style CTA */}
           <Link 
@@ -334,6 +338,13 @@ export default function HomePage() {
             YOUR JOURNEY AWAITS
           </p>
           
+          <div className="bg-stone-900/60 border border-stone-800 rounded-lg p-6 mb-8">
+            <p className="font-mono text-[11px] text-cyan-400 tracking-widest mb-2">HOW TO RESPOND</p>
+            <p className="text-dust-200 font-serif text-base leading-relaxed">
+              Admit your need. Trust Jesus—God with us—who lived, died, and rose for you. Rest in His grace, turn toward Him, and follow in His rhythm of rest and hope until He returns.
+            </p>
+          </div>
+
           <h2 className="font-cinematic text-5xl md:text-7xl text-dust-100 tracking-wider mb-8">
             READY TO HIT<br />THE ROAD?
           </h2>
@@ -341,6 +352,9 @@ export default function HomePage() {
           <p className="text-xl text-dust-400 mb-12 font-serif">
             Whether you&apos;re at a crossroads or just need to escape the noise, 
             the road has something to teach you.
+          </p>
+          <p className="text-sm text-dust-500 mb-10 font-mono tracking-widest">
+            We travel in His rhythm of rest and look for His promised return.
           </p>
 
           <Link href="/journey" className="btn-expedition inline-flex items-center gap-3">

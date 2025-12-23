@@ -34,6 +34,58 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ===== MEET JESUS ===== */}
+      <section className="py-16 bg-stone-950">
+        <div className="max-w-4xl mx-auto px-6 space-y-6">
+          <h2 className="font-cinematic text-4xl md:text-5xl text-dust-100 tracking-wider">
+            WHO JESUS IS
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 text-dust-200 font-serif leading-relaxed">
+            <div className="space-y-3">
+              <p><strong className="text-cyan-300">His identity:</strong> Fully God and fully man—God with us.</p>
+              <p><strong className="text-cyan-300">His mission:</strong> Came to seek and save the lost; to give His life as a ransom.</p>
+            </div>
+            <div className="space-y-3">
+              <p><strong className="text-cyan-300">His work:</strong> Perfect life, sacrificial death, and bodily resurrection.</p>
+              <p><strong className="text-cyan-300">Our response:</strong> Repent, trust Him, and follow—resting in grace, not performance.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== REST, HOPE, AND WALKING WITH HIM ===== */}
+      <section className="py-14 bg-stone-950/80 border-t border-stone-900">
+        <div className="max-w-4xl mx-auto px-6 space-y-4">
+          <h3 className="font-cinematic text-3xl md:text-4xl text-dust-100 tracking-wider">
+            LIVING IN HIS REST AND HOPE
+          </h3>
+          <div className="grid md:grid-cols-2 gap-5 text-dust-200 font-serif leading-relaxed">
+            <div className="space-y-3">
+              <p><strong className="text-cyan-300">A rhythm of rest:</strong> A weekly pause to remember His finished work and delight in His presence.</p>
+              <p><strong className="text-cyan-300">Scripture and prayer:</strong> Letting the Gospels shape how we see God, ourselves, and others.</p>
+            </div>
+            <div className="space-y-3">
+              <p><strong className="text-cyan-300">His soon return:</strong> Living with hope because Jesus promised to come again and make all things new.</p>
+              <p><strong className="text-cyan-300">Whole-life discipleship:</strong> Following Jesus with our bodies, minds, relationships, and service to others.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== HOW TO RESPOND TO JESUS ===== */}
+      <section className="py-14 bg-stone-950">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-stone-900/70 border border-stone-800 rounded-lg p-6 space-y-3">
+            <p className="font-mono text-[11px] text-cyan-400 tracking-widest">HOW TO RESPOND</p>
+            <p className="text-dust-200 font-serif leading-relaxed">
+              Come as you are. Admit your need. Trust Jesus—God with us—who lived perfectly, died in our place,
+              and rose to give new life. Rest in His grace, realign your life to His Word, practice His rhythm of
+              weekly rest, and live with hope because He promised to return.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ===== THE STORY ===== */}
       <section className="py-20 bg-stone-950">
         <div className="max-w-3xl mx-auto px-6">

@@ -34,6 +34,10 @@ export default function JourneyPage() {
             6,859.5 kilometres. {journeyStops.length} stops. Out across the Nullarbor to Port Lincoln, 
             and back via the Eyre Peninsula, Esperance and Israelite Bay.
           </p>
+          <p className="mt-4 text-dust-200 font-serif max-w-2xl">
+            Every leg pointed me to <span className="text-cyan-300 font-semibold">Jesus</span>—His compassion, His strength in wilderness places,
+            His invitation to follow even when the road is straight and silent, and His promise to return and make all things new.
+          </p>
         </div>
       </section>
 

@@ -13,6 +13,8 @@ const journalEntries = [
     verse: 'Be still and know that I am God.',
     verseRef: 'Psalm 46:10',
     date: 'Day 5',
+    jesusFocus: 'Jesus withdrew to pray—He invites us to bring our noise to His quiet.',
+    prayer: 'Jesus, teach me to meet You in the silence.',
   },
   {
     title: 'When the Road Runs Straight',
@@ -22,6 +24,8 @@ const journalEntries = [
     verse: 'Trust in the Lord with all your heart and lean not on your own understanding.',
     verseRef: 'Proverbs 3:5',
     date: 'Day 4',
+    jesusFocus: 'Jesus is trustworthy when we can’t see the end of the road.',
+    prayer: 'Jesus, help me trust Your lead when I can’t see the turn ahead.',
   },
   {
     title: 'The Weight of Stars',
@@ -31,6 +35,8 @@ const journalEntries = [
     verse: 'He determines the number of the stars and calls them each by name.',
     verseRef: 'Psalm 147:4',
     date: 'Day 7',
+    jesusFocus: 'Jesus, the Creator-King, knows us by name and holds the galaxies.',
+    prayer: 'Jesus, thank You for knowing me fully and loving me completely.',
   },
 ]
 
@@ -61,6 +67,9 @@ export default function DevotionsPage() {
           <p className="text-xl text-dust-300 font-serif max-w-2xl">
             Pages from a worn notebook. Thoughts scribbled by torchlight. 
             Prayers whispered under endless skies.
+          </p>
+          <p className="mt-4 text-dust-200 font-serif max-w-2xl">
+            These pages trace His rhythm of rest and the hope of His soon return.
           </p>
         </div>
       </section>
@@ -106,6 +115,17 @@ export default function DevotionsPage() {
                     </cite>
                   </blockquote>
                   
+                  {/* Jesus focus */}
+                  {entry.jesusFocus && (
+                    <div className="mt-6 p-4 bg-cyan-50/60 border border-cyan-100 rounded">
+                      <p className="font-mono text-[11px] text-cyan-700 tracking-widest mb-1">WHAT THIS REVEALS ABOUT JESUS</p>
+                      <p className="text-stone-800 font-serif">{entry.jesusFocus}</p>
+                      {entry.prayer && (
+                        <p className="text-stone-700 font-serif italic mt-3">Prayer: {entry.prayer}</p>
+                      )}
+                    </div>
+                  )}
+
                   {/* Read more */}
                   <div className="mt-8 flex justify-end">
                     <span className="font-mono text-xs text-earth-600 group-hover:text-earth-800 transition-colors flex items-center gap-2 cursor-pointer">
