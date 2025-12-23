@@ -275,7 +275,10 @@ export default function HomePage() {
       </section>
 
       {/* ===== JESUS CHARACTER SECTION ===== */}
-      <section className="relative py-32 bg-gradient-to-b from-night-950/40 via-stone-950/50 to-stone-900/60">
+      <section
+        id="knowing-jesus"
+        className="relative py-32 bg-gradient-to-b from-night-950/40 via-stone-950/50 to-stone-900/60"
+      >
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-16">
             <p className="font-mono text-xs text-cyan-500 tracking-widest mb-4">THE SON OF GOD</p>

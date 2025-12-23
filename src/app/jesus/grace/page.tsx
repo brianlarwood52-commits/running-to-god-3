@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 
 export default function JesusGracePage() {
   return (
@@ -59,6 +60,22 @@ export default function JesusGracePage() {
                   grace, not out of fear.&rdquo;
                 </li>
               </ol>
+            </div>
+
+            {/* Navigation back */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                href="/"
+                className="px-4 py-2 border border-stone-700 rounded-full text-sm font-mono tracking-widest text-dust-300 hover:border-cyan-500 hover:text-cyan-300 transition-colors"
+              >
+                ← BACK HOME
+              </Link>
+              <Link
+                href="/#knowing-jesus"
+                className="px-4 py-2 border border-stone-700 rounded-full text-sm font-mono tracking-widest text-dust-300 hover:border-cyan-500 hover:text-cyan-300 transition-colors"
+              >
+                ↺ BACK TO KNOWING JESUS
+              </Link>
             </div>
           </div>
         </div>
